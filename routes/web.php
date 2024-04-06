@@ -51,6 +51,18 @@ Route::get("/summery",function(){
     return view('pages.summery');
 });
 
+Route::get("/smenu",function(){
+    return view('pages.select-menu');
+});
+
+Route::get("select-menu",function(){
+    return view('pages.menu-select');
+});
+
+Route::get("order-complete",function(){
+    return view('pages.order-complete');
+});
+
 
 
 
@@ -85,8 +97,8 @@ Route::middleware([
         $mealplan->First_delivery_on = request('first_delivery_date');
         $mealplan->time = request('time');
         $mealplan->save();
-        
-        return redirect('/');
+
+        return redirect('/summery');
 });
 
 });

@@ -5,9 +5,9 @@
 <div class="meal-plan">
   <div class="meal-plan-in">
     <div class="x86">
-     <h2>Select your preference</h2>
+     <h2> 1. Select your preference</h2>
     <div class="preference">
-       
+
     <div >
       <button id="r335" class="preference-button" value="meat">
         <img src="icons/meat.png" alt="">
@@ -25,7 +25,7 @@
 
       <div>
         <button id="r335" class="preference-button" value="vegan">
-    
+
             <img src="icons/vegan.png" alt="">
             <h5>Vegan</h5>
         </button>
@@ -34,7 +34,7 @@
 
         <div>
           <button id="r335" class="preference-button" value="fish">
-          
+
           <img src="icons/fish.png" alt="">
           <h5>Pescatarian</h5>
           </button>
@@ -48,7 +48,7 @@
 
         <div >
           <button id="r335" class="preference-button" value="family">
-            
+
           <img src="icons/family.png" alt="">
           <h5>Family frindly</h5>
           </button>
@@ -57,8 +57,12 @@
       </div>
   </div>
 
+
   <div class="shock">
-      <div id="serving">
+      <h2 class="mb-3"> 2. Customize your plan size</h2>
+
+
+      <div id="serving" class="mb-4">
         <h4>Servings per meal</h4>
         <label id="r65">
             <input type="radio" value="2" name="serving">
@@ -70,7 +74,8 @@
       </label>
       </div>
 
-      <div id="number-meal">
+
+      <div id="number-meal" class="mb-4">
         <h4>Number of meals pre week</h4>
         <label id="r65">
             <input type="radio" value="2" name="meal-number">
@@ -86,9 +91,9 @@
             <label id="r65">
               <input type="radio" value="6" name="meal-number">
               <span id="t35">6</span>
-      </label>
+            </label>
       </div>
-    <div id="bottem-box">
+    <div id="bottem-box" class="border border-gray-300 p-3">
       <div class="price">
         <label for="">Servings per meal</label>
         <span id="servings"></span>
@@ -109,13 +114,15 @@
       <label>Total price</label>
       <span id="total"></span>
       </div>
+          <button onclick="window.location.href='/info'" class="btn btn-primary">Continue</button>
     </div>
     </div>
-    <button onclick="window.location.href='/info'" class="btn btn-primary">Continue</button>
+
+
      </div>
     </div>
-      </div>
- 
+
+
       <script>
 
         // Get all serving buttons and meal number buttons
@@ -125,49 +132,57 @@ const selectedServingSpan = document.getElementById('servings');
 const selectedMealNumberSpan = document.getElementById('meals-per-week');
 
 let selectedServing;
+let selectedMealNumber;
 let bprice = 0;
-let tprice = 0;
+let tprice = 500;
 function updateSelectedValues() {
   selectedServing = Array.from(servingButtons).find(btn => btn.checked);
-  const selectedMealNumber = Array.from(mealNumberButtons).find(btn => btn.checked);
+  selectedMealNumber = Array.from(mealNumberButtons).find(btn => btn.checked);
 
-  selectedServingSpan.textContent = (selectedServing ? selectedServing.value : 'None');
-  selectedMealNumberSpan.textContent = (selectedMealNumber ? selectedMealNumber.value : 'None');
+  selectedServingSpan.textContent = (selectedServing.value);
+  selectedMealNumberSpan.textContent = (selectedMealNumber.value);
   document.getElementById('service-charge').innerHTML = "500";
 
-  if(selectedServing.value == 2){
 
-     bprice = 3000;
-     tprice = 3500;
+    // switch (selectedMealNumber.value) {
+    //     case 2:
+    //         tprice = 500;
+    //         break;
+    //     case 4:
+    //         tprice = 1000;
+    //         break;
+    //     case 5:
+    //         tprice = 1500;
+    //         break;
+    //     case 6:
+    //         tprice = 2000;
+    //         break;
+    // }
 
-   
-  }
-  else if(selectedServing.value == 4){
 
-    bprice = 6000;
-    tprice = 6500;
-    
-  }
 
-  
-  switch (selectedMealNumber.value) {
-    case 2:
-        tprice += 500;
-        break;
-    case 4:
-    tprice += 1000;
-        break;
-    case 5:
-    tprice += 1500;
-        break;
-    case 6:
-    tprice += 2000;
-        break;
-  }
+    // Calculating box  price
+
+    bprice = parseInt(selectedMealNumber.value) * 1000;
+
+    // Calculating total price
+
+    if(selectedServing.value == 4) {
+        bprice = bprice * 2;
+        tprice = bprice;
+    }
+    else{
+        tprice = bprice;
+    }
+
+
+
   document.getElementById('Box-price').innerHTML = bprice;
+  localStorage.setItem('box_price', bprice);
   document.getElementById('total').innerHTML = tprice;
-  
- 
+    localStorage.setItem('total_price', tprice);
+
+
 }
 
 // Add click event listeners to serving buttons
@@ -180,21 +195,21 @@ mealNumberButtons.forEach(button => {
   button.addEventListener('click', updateSelectedValues);
 });
 
-        
+
         const buttons = document.querySelectorAll('.preference-button');
         const selectedPreferences = document.getElementById('selected-pref');
 
-      
-        
+
+
         buttons.forEach(button => {
           button.addEventListener('click', () => {
-            
+
             button.classList.toggle('active');
 
       const activeButtons = Array.from(document.querySelectorAll('.preference-button.active'));
       const selectedValues = activeButtons.map(btn => btn.value);
 
-    
+
       selectedPreferences.textContent = 'Selected Preferences: ' + selectedValues.join(', ');
           });
         });
@@ -210,15 +225,24 @@ mealNumberButtons.forEach(button => {
 document.getElementById('box-price').textContent = price.toFixed(2);
 
 
+        localStorage.setItem('date', document.getElementById("first_delivery_date").value);
 
-        
-  
 
- 
 
-     
- 
+
+
+
       </script>
-      
+
+    <?php
+
+    session_start();
+    function updateSelectedValues() {
+        // Your JavaScript code...
+        $_SESSION['box_price'] = $bprice;
+        $_SESSION['total_price'] = $tprice;
+    }
+    ?>
+
 
 </x-app-layout>

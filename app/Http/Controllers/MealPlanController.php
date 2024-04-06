@@ -15,7 +15,8 @@ class MealPlanController extends Controller
     {
         return view('admin.products.index',[
         'meal_plans' => meal_plan::paginate(10),
-        
+
+
         ]);
     }
 

@@ -5,7 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>Just Eat</title>
+
+        <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon">
+
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -68,68 +71,79 @@
             <main>
                 {{ $slot }}
             </main>
-            
+
         <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Company</h4>
-                        <a class="btn btn-link" href="">About Us</a>
-                        <a class="btn btn-link" href="">Contact Us</a>
-                        <a class="btn btn-link" href="">Terms & Condition</a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>16 Union place, Colombo 02</p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+94 769801529</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>JustEat@gmail.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+            <!-- component -->
+{{--            <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">--}}
+            <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+
+            <footer class="relative bg-blueGray-200 pt-8 pb-6">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-wrap text-left lg:text-left">
+                        <div class="w-full lg:w-6/12 px-4">
+                            <h4 class="text-3xl fonat-semibold text-blueGray-700">Let's keep in touch!</h4>
+                            <h5 class="text-lg mt-0 mb-2 text-blueGray-600">
+                                Find us on any of these platforms, we respond 1-2 business days.
+                            </h5>
+                            <div class="mt-6 lg:mb-0 mb-6">
+                                <button class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                                    <i class="fab fa-twitter"></i></button><button class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                                    <i class="fab fa-facebook-square"></i></button><button class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                                    <i class="fab fa-dribbble"></i></button><button class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                                    <i class="fab fa-github"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-6/12 px-4">
+                            <div class="flex flex-wrap items-top mb-6">
+                                <div class="w-full lg:w-4/12 px-4 ml-auto">
+                                    <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Useful Links</span>
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://www.creative-tim.com/presentation?ref=njs-profile">About Us</a>
+                                        </li>
+                                        <li>
+                                            <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://blog.creative-tim.com?ref=njs-profile">Blog</a>
+                                        </li>
+                                        <li>
+                                            <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://www.github.com/creativetimofficial?ref=njs-profile">Github</a>
+                                        </li>
+                                        <li>
+                                            <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://www.creative-tim.com/bootstrap-themes/free?ref=njs-profile">Free Products</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="w-full lg:w-4/12 px-4">
+                                    <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Other Resources</span>
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-profile">MIT License</a>
+                                        </li>
+                                        <li>
+                                            <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://creative-tim.com/terms?ref=njs-profile">Terms &amp; Conditions</a>
+                                        </li>
+                                        <li>
+                                            <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://creative-tim.com/privacy?ref=njs-profile">Privacy Policy</a>
+                                        </li>
+                                        <li>
+                                            <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://creative-tim.com/contact-us?ref=njs-profile">Contact Us</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
-                        <h5 class="text-light fw-normal">Monday - Saturday</h5>
-                        <p>09AM - 09PM</p>
-                        <h5 class="text-light fw-normal">Sunday</h5>
-                        <p>10AM - 08PM</p>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter</h4>
-                        <p>Singup for weekly recipes </p>
-                        <div class="position-relative mx-auto" style="max-width: 400px;">
-                            <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                            <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">JustEat</a>, All Right Reserved. 
-							
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="">Home</a>
-                                <a href="">Cookies</a>
-                                <a href="">Help</a>
-                                <a href="">FQAs</a>
+                    <hr class="my-6 border-blueGray-300">
+                    <div class="flex flex-wrap items-center md:justify-between justify-center">
+                        <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+                            <div class="text-sm text-blueGray-500 font-semibold py-1">
+                                Copyright © <span id="get-current-year">2021</span><a href="https://www.creative-tim.com/product/notus-js" class="text-blueGray-500 hover:text-gray-800" target="_blank"> Notus JS by
+                                    <a href="https://www.creative-tim.com?ref=njs-profile" class="text-blueGray-500 hover:text-blueGray-800">Creative Tim</a>.
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        </div>
+            </footer>
 
         @stack('modals')
 

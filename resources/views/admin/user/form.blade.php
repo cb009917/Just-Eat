@@ -11,7 +11,7 @@
                         Update the user's details.
                     </p>
                 </div>
-
+ 
                 <form method="post"
                     @if($user->id)
                     action="{{ route('user.update', $user->id) }}"
