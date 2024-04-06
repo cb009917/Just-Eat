@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\hom;
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\homecontroller;
 use App\Http\Controllers\MealPlanController;
 use App\Models\meal_plan;
@@ -23,6 +24,110 @@ use App\Models\meal_plan;
 // Route::post('/post-test', function (Request $request) {
 //     dd(request());
 // });
+
+
+/**
+ * Administration routes
+ */
+
+Route::group(['prefix' => 'admin'], function () {
+
+    /**
+     * Authentication routes
+     */
+    Route::group(['prefix' => 'auth'], function (){
+
+        // user resource route
+        Route::resource('users', BaseController::class);
+
+        // roles and permission resource route
+        Route::resource('roles', BaseController::class);
+        Route::resource('permissions', BaseController::class);
+
+
+
+    });
+
+    /**
+     * Product routes
+     */
+    Route::group(['prefix' => 'product'], function () {
+
+        // product resource route
+        Route::resource('products', BaseController::class);
+
+        // product category resource route
+        Route::resource('categorys', BaseController::class);
+
+        //Seasonal product resource route
+        Route::resource('seasonals', BaseController::class);
+
+    });
+
+    // Support
+    Route::resource('supports', BaseController::class);
+
+    /**
+     * Analytic routes
+     */
+    Route::group(['prefix' => 'analytic'], function () {
+
+       //@todo add analytic routes
+
+    });
+
+    /**
+     * order routes
+     */
+    Route::group(['prefix' => 'order'], function () {
+
+        // order resource route
+        Route::resource('orders', BaseController::class);
+
+        // delivery and customer resource route
+        Route::resource('deliverys', BaseController::class);
+    });
+
+
+
+    Route::get("/",function(Request $request){
+        return "yo admin";
+    });
+});
+
+
+/**
+ * User routes
+ */
+Route::group(['prefix' => 'user'], function () {
+
+    /**
+     * Subscription routes
+     */
+    Route::group(['prefix' => 'subscription'], function () {
+
+
+        // subscription plan resource route
+        Route::resource('plans', BaseController::class);
+
+        // Delivery tracking routes
+        Route::resource('tracking', BaseController::class);
+
+        // notification routes
+        Route::resource('notifications', BaseController::class);
+
+        // Review and feedback routes
+        Route::resource('reviews', BaseController::class);
+    });
+
+
+
+
+
+
+
+
+
 
 
 Route::get("/",[homecontroller::class,"index"]);
