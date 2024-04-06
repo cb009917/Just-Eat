@@ -101,27 +101,21 @@ Route::group(['prefix' => 'admin'], function () {
  */
 Route::group(['prefix' => 'user'], function () {
 
-    /**
-     * Subscription routes
-     */
-    Route::group(['prefix' => 'subscription'], function () {
+
+    //subscription route
+    Route::resource('subscriptions', BaseController::class);
+
+    //review route
+    Route::resource('reviews', BaseController::class);
+
+    //Delivery tracking route
+    Route::resource('deliveries', BaseController::class);
+
+    //notification route
+    Route::resource('notifications', BaseController::class);
 
 
-        // subscription plan resource route
-        Route::resource('plans', BaseController::class);
-
-        // Delivery tracking routes
-        Route::resource('tracking', BaseController::class);
-
-        // notification routes
-        Route::resource('notifications', BaseController::class);
-
-        // Review and feedback routes
-        Route::resource('reviews', BaseController::class);
-    });
-
-
-
+});
 
 
 
