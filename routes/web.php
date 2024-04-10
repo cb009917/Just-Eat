@@ -114,21 +114,11 @@ Route::group(['prefix' => 'user'], function () {
     //notification route
     Route::resource('notifications', BaseController::class);
 
-
 });
-
-
-
-
-
-
 
 
 Route::get("/",[homecontroller::class,"index"]);
 
-Route::get("/home",function(){
-    return view('home');
-});
 
 Route::get("/contact",function(){
     return view('pages.contact');
@@ -200,4 +190,11 @@ Route::middleware([
         return redirect('/summery');
 });
 
+});
+
+
+// get all the users from the users tabel
+Route::middleware(['role:admin'])->get('/dev', function (Request $request) {
+    $users = DB::table('users')->get();
+    return 'yo dev';
 });

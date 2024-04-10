@@ -14,8 +14,8 @@ class RecipeController extends Controller
     public function index()
     {
         return view('admin.products.index',[
-            'recipes' => Recipe::paginate(10),
-        
+            'recipes' => Recipe::paginate(5),
+
         ]);
     }
 
@@ -26,7 +26,7 @@ class RecipeController extends Controller
     {
         return view('admin.products.form',[
             'recipe' => (new Recipe()),
-            
+
         ]);
     }
 
@@ -63,7 +63,7 @@ class RecipeController extends Controller
      */
     public function update(UpdateRecipeRequest $request, Recipe $recipe)
     {
-        
+
 
         $recipe->update($request->all());
 
@@ -77,6 +77,6 @@ class RecipeController extends Controller
     {
         $recipe->delete();
         return redirect()->route('recipe.index')->with('success', 'Product successfully deleted!');
-    
+
     }
 }

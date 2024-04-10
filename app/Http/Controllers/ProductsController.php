@@ -13,10 +13,10 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //  return view('admin.products.index',[
-        //     'products' => products::paginate(10),
-        
-        // ]);
+//          return view('admin.products.index',[
+//             'products' => products::paginate(1),
+//
+//         ]);
     }
 
     /**
@@ -52,7 +52,7 @@ class ProductsController extends Controller
         //     'products' => $products,
         // ]);
 
-       
+
     }
 
     /**
@@ -64,7 +64,7 @@ class ProductsController extends Controller
             'name' => 'required',
             'price' => 'required',
             'description' => 'required',
-            
+
         ]);
 
         $products->update($validated);

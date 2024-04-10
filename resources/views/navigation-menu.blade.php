@@ -243,7 +243,7 @@
         </button>
         <div class="navbar-collapse">
 
-            <img src="img/just-eat-high-resolution-logo-transparent.png" id="logo" >
+            <img src="{{url('img/just-eat-high-resolution-logo-transparent.png')}}" id="logo" >
                 <ul class="hero space-x-4">
                 <li><a href="/">Home</a></li>
                <li><a href="/menu">Menu</a></li>
@@ -252,10 +252,10 @@
 
 
 
-            @if (Route::has('login'))
+                    @if (Route::has('login'))
 
-                @auth
-                    <div class="ms-3 relative">
+                        @auth
+                            <div class="ms-3 relative">
                                 <x-dropdown align="right" width="48">
                                     <x-slot name="trigger">
                                         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -276,40 +276,10 @@
                                     </x-slot>
 
                                     <x-slot name="content">
-                                        <!-- Account Management -->
-                                        @auth
-                                            @if(auth()->user()->email == 'Admin@admin.com')
-
-
-                                                <div class="block px-4 py-2 text-xs text-gray-400">
-                                                    {{ __('Manage Users') }}
-                                                </div>
-
-                                                <x-dropdown-link href="{{ route ('user.index')}}">
-                                                    {{ __('Users') }}
-                                                </x-dropdown-link>
-
-                                                <!-- product Management -->
-
-                                                <div class="block px-4 py-2 text-xs text-gray-400">
-                                                    {{ __('Manage Meal Plans') }}
-                                                </div>
-
-                                                <x-dropdown-link href="{{ route ('recipe.index')}}">
-                                                    {{ __('Product') }}
-                                                </x-dropdown-link>
-
-
-                                            @endif
-                                        @endauth
-
-
-
-
                                         <div class="border-t border-gray-200"></div>
 
-                                        <x-dropdown-link href="{{ route('profile.show') }}">
-                                            {{ __('Profile') }}
+                                        <x-dropdown-link href="{{ route('dashboard') }}">
+                                            {{ __('Dashboard') }}
                                         </x-dropdown-link>
                                         <!-- Authentication -->
                                         <form method="POST" action="{{ route('logout') }}" x-data>
@@ -324,15 +294,8 @@
                                 </x-dropdown>
                             </div>
 
-                @else
-                    <li>   <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a> </li>
-
-                    @if (Route::has('register'))
-                        <li >    <a href="{{ route('register') }}" class= " font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a></li>
-                    @endif
-                @endauth
-            </div>
-        @endif
+                        @endif
+                    @endauth
                 </ul>
         </div>
             </div>
