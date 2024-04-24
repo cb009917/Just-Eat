@@ -4,11 +4,11 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-6 text-center text-lg-start">
                     <h1 class="display-3 text-white animated slideInLeft">Celebrate the <br> flavours of life </h1>
-                  
-                    <a href="/sub" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Get Started</a>
+
+                    <a href="{{route('/subscription')}}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Get Started</a>
                 </div>
                 <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-               
+
                 </div>
             </div>
         </div>
@@ -38,12 +38,12 @@
                     <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
                     <h1 class="mb-4">Welcome to Just Eat</h1>
                     <p class="mb-4">At Just Eat, we are passionate about bringing culinary delight to your doorstep. Our mission is to redefine the way you experience home-cooked meals by delivering fresh, customizable, and chef-inspired options. With a commitment to quality, convenience, and your unique tastes, we aim to make every dining moment special. Welcome to a world where good food meets exceptional convenience — welcome to Just Eat.</p>
-                    
-                    
+
+
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
             <h2>CUSTOMIZE YOUR MENU</h2>
             <p>You can select the meals from our weekly menu</p>
         </div>
-      
+
         <div class="step3">
             <h2>SELECT DELIVERY AND TIME</h2>
             <p>Let us know where and when the meals need to be delivered</p>
@@ -180,8 +180,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                        
+
+
                                 </div>
                             </div>
                             <div id="tab-2" class="tab-pane fade show p-0">
@@ -310,10 +310,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                  
-                                   
-                                    
-                                   
+
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -321,7 +321,7 @@
                 </div>
             </div>
             <!-- Menu End -->
-    
+
             <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content rounded-0">
@@ -340,10 +340,10 @@
                 </div>
             </div>
             <!-- Reservation Start -->
-    
-    
+
+
             <!-- Team End -->
-    
-    
+
+
 
 </x-app-layout>

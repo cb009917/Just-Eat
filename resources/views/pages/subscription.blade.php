@@ -10,14 +10,14 @@
 
     <div >
       <button id="r335" class="preference-button" value="meat">
-        <img src="icons/meat.png" alt="">
+        <img src="{{url('icons/meat.png')}}" alt="">
         <h5>Meat</h5>
       </button>
     </div>
 
     <div>
       <button id="r335" class="preference-button" value="keto">
-            <img src="icons/keto.png" alt="">
+            <img src="{{url('icons/keto.png')}}" alt="">
             <h5>Keto</h5>
       </button>
     </div>
@@ -26,7 +26,7 @@
       <div>
         <button id="r335" class="preference-button" value="vegan">
 
-            <img src="icons/vegan.png" alt="">
+            <img src="{{url('icons/vegan.png')}}" alt="">
             <h5>Vegan</h5>
         </button>
       </div>
@@ -35,13 +35,13 @@
         <div>
           <button id="r335" class="preference-button" value="fish">
 
-          <img src="icons/fish.png" alt="">
+          <img src="{{url('icons/fish.png')}}" alt="">
           <h5>Pescatarian</h5>
           </button>
         </div>
         <div>
           <button id="r335" class="preference-button" value="gluten">
-          <img src="icons/gluten-free.png" alt="">
+          <img src="{{url('icons/gluten-free.png')}}" alt="">
           <h5>Gluten free</h5>
           </button>
         </div>
@@ -49,7 +49,7 @@
         <div >
           <button id="r335" class="preference-button" value="family">
 
-          <img src="icons/family.png" alt="">
+          <img src="{{url('icons/family.png')}}" alt="">
           <h5>Family frindly</h5>
           </button>
         </div>
@@ -114,7 +114,7 @@
       <label>Total price</label>
       <span id="total"></span>
       </div>
-          <button onclick="window.location.href='/info'" class="btn btn-primary">Continue</button>
+          <button onclick="window.location.href='subscription/user-information'" class="btn btn-primary">Continue</button>
     </div>
     </div>
 

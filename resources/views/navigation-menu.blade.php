@@ -247,7 +247,7 @@
                 <ul class="hero space-x-4">
                 <li><a href="/">Home</a></li>
                <li><a href="/menu">Menu</a></li>
-                    <li><a href="/sub">Pricing</a></li>
+                    <li><a href="{{route('/subscription')}}">Pricing</a></li>
                <li><a href="/contact">Contact</a></li>
 
 
@@ -277,7 +277,9 @@
 
                                     <x-slot name="content">
                                         <div class="border-t border-gray-200"></div>
-
+                                        @if (Route::has('login'))
+                                            <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+                                                @auth
                                         <x-dropdown-link href="{{ route('dashboard') }}">
                                             {{ __('Dashboard') }}
                                         </x-dropdown-link>
@@ -290,6 +292,17 @@
                                                 {{ __('Log Out') }}
                                             </x-dropdown-link>
                                         </form>
+                                            @else
+                                                 <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+
+                                                @if (Route::has('register'))
+                                                    <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                                                @endif
+                                                @endauth
+                                            </div>
+                                            @endif
+
+
                                     </x-slot>
                                 </x-dropdown>
                             </div>

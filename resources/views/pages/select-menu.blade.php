@@ -242,7 +242,7 @@
                 <div class="relative"><a href="#">
                         <img class="w-full"
                              style="height: 270px"
-                             src="img/burrito.jpg"
+                             src="{{url('img/burrito.jpg')}}"
                              alt="Sunset in the mountains">
                         <div
                             class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25">

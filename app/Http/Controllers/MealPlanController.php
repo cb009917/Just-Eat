@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\meal_plan;
 use App\Http\Requests\Storemeal_planRequest;
 use App\Http\Requests\Updatemeal_planRequest;
+use App\Models\MealPlan;
 
 class MealPlanController extends Controller
 {
@@ -33,27 +34,40 @@ class MealPlanController extends Controller
      */
     public function store(Storemeal_planRequest $request)
     {
-        $validatedData = $request->validate([
-            'first-name' => 'required|max:255',
-            'email' => 'required|email',
-            'city' => 'required|max:255',
-            'state' => 'required|max:255',
-            'zip' => 'required|max:255',
-            'contact' => 'required|max:255',
-        ]);
+//        $validatedData = $request->validate([
+//            'first-name' => 'required|max:255',
+//            'email' => 'required|email',
+//            'city' => 'required|max:255',
+//            'state' => 'required|max:255',
+//            'zip' => 'required|max:255',
+//            'contact' => 'required|max:255',
+//        ]);
+//
+//        $mealPlan = new meal_plan();
+//        $mealPlan->first_name = $validatedData['name'];
+//        $mealPlan->email = $validatedData['email'];
+//        $mealPlan->city = $validatedData['city'];
+//        $mealPlan->state = $validatedData['state'];
+//        $mealPlan->zip = $validatedData['zip'];
+//        $mealPlan->contact = $validatedData['contact'];
+//        // Set other fields here
+//        $mealPlan->save();
 
-        $mealPlan = new meal_plan();
-        $mealPlan->first_name = $validatedData['name'];
-        $mealPlan->email = $validatedData['email'];
-        $mealPlan->city = $validatedData['city'];
-        $mealPlan->state = $validatedData['state'];
-        $mealPlan->zip = $validatedData['zip'];
-        $mealPlan->contact = $validatedData['contact'];
-        // Set other fields here
-        $mealPlan->save();
+        $mealplan = new MealPlan();
+        $mealplan->name = request('name');
+        $mealplan->address = request('address');
+        $mealplan->email = request('email');
+        $mealplan->city = request('city');
+        $mealplan->state = request('state');
+        $mealplan->zip = request('zip');
+        $mealplan->First_delivery_on = request('first_delivery_date');
+        $mealplan->time = request('time');
+        $mealplan->save();
 
         // Redirect or return response
-        return redirect()->route('some.route')->with('success', 'Meal plan created successfully!');
+
+      //  return (dd($mealplan));
+       return redirect()->route('/summery')->with('success', 'Meal plan created successfully!');
     }
 
     /**

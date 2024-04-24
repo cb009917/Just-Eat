@@ -26,9 +26,11 @@ use App\Models\meal_plan;
 // });
 
 
-/**
- * Administration routes
- */
+Route::get("/",[homecontroller::class,"index"]);
+
+    /**
+     * Administration routes
+     */
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -114,10 +116,31 @@ Route::group(['prefix' => 'user'], function () {
     //notification route
     Route::resource('notifications', BaseController::class);
 
+    Route::get("subscription",function(){
+        return view('pages.subscription');
+    })->name('/subscription');
+
+    Route::get("subscription/user-information",function(){
+        return view('pages.info');
+    });
+
+    Route::get("subscription/summery",function(){
+        return view('pages.summery');
+    })->name('/summery');
+
+
+    Route::get("subscription/select-menu",function(){
+        return view('pages.menu-select');
+    });
+
+
+    Route::get("subscription/order-complete",function(){
+        return view('pages.order-complete');
+    });
 });
 
 
-Route::get("/",[homecontroller::class,"index"]);
+
 
 
 Route::get("/contact",function(){
@@ -128,29 +151,14 @@ Route::get("/menu",function(){
     return view('pages.menu');
 });
 
-Route::get("/sub",function(){
-    return view('pages.subscription');
-});
 
-Route::get("/info",function(){
-    return view('pages.info');
-});
 
-Route::get("/summery",function(){
-    return view('pages.summery');
-});
 
 Route::get("/smenu",function(){
     return view('pages.select-menu');
 });
 
-Route::get("select-menu",function(){
-    return view('pages.menu-select');
-});
 
-Route::get("order-complete",function(){
-    return view('pages.order-complete');
-});
 
 
 
@@ -172,23 +180,23 @@ Route::middleware([
     Route::resource('products', \App\Http\Controllers\ProductsController::class);
     Route::resource('user', \App\Http\Controllers\Usercontroller::class);
     Route::resource('recipe', \App\Http\Controllers\RecipeController::class);
-    // Route::post('/meal-plans', [MealPlanController::class, 'store']);
+     //Route::post('meal-plans', [MealPlanController::class, 'store']);
     Route::resource('meal_plan', \App\Http\Controllers\MealPlanController::class);
 
-    Route::post('/meal-plans',function(){
-        $mealplan = new meal_plan();
-        $mealplan->name = request('name');
-        $mealplan->address = request('address');
-        $mealplan->email = request('email');
-        $mealplan->city = request('city');
-        $mealplan->state = request('state');
-        $mealplan->zip = request('zip');
-        $mealplan->First_delivery_on = request('first_delivery_date');
-        $mealplan->time = request('time');
-        $mealplan->save();
-
-        return redirect('/summery');
-});
+//    Route::post('/meal-plans',function(){
+//        $mealplan = new meal_plan();
+//        $mealplan->name = request('name');
+//        $mealplan->address = request('address');
+//        $mealplan->email = request('email');
+//        $mealplan->city = request('city');
+//        $mealplan->state = request('state');
+//        $mealplan->zip = request('zip');
+//        $mealplan->First_delivery_on = request('first_delivery_date');
+//        $mealplan->time = request('time');
+//        $mealplan->save();
+//
+//        return redirect('/summery');
+//});
 
 });
 
