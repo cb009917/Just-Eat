@@ -191,7 +191,7 @@
         <div class="data py-6 border-b border-gray-200">
             <div class="flex items-center justify-between gap-4 mb-5">
                 <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700">Box price </p>
-                <p class="font-medium text-lg leading-8 text-gray-900" id="bprice"></p>
+                <p class="font-medium text-lg leading-8 text-gray-900"></p>
             </div>
             <div class="flex items-center justify-between gap-4 mb-5">
                 <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700">Shipping</p>
@@ -204,7 +204,7 @@
         </div>
         <div class="total flex items-center justify-between pt-6">
             <p class="font-normal text-xl leading-8 text-black ">Subtotal</p>
-            <h5 class="font-manrope font-bold text-2xl leading-9 text-indigo-600" id="tprice"></h5>
+            <h5 class="font-manrope font-bold text-2xl leading-9 text-indigo-600">{{$total_price}}</h5>
         </div>
     </div>
 </div>
@@ -228,7 +228,7 @@
                             Full name
                         </dt>
                         <dd class="mt-1 text-sm text-gray-900" id="customer_name">
-                            <!-- Full name field content goes here -->
+                           {{Auth::user()->name}}
                         </dd>
                     </div>
                     <div class="py-3">
@@ -236,7 +236,7 @@
                             Email address
                         </dt>
                         <dd class="mt-1 text-sm text-gray-900" id="customer_email">
-                            <!-- Email address field content goes here -->
+                           {{Auth::user()->email}}
                         </dd>
                     </div>
                     <div class="py-3">
@@ -273,15 +273,21 @@
             <button class="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-black font-bold py-2 px-4 rounded shadow" >
                 Continue
             </button>
-</a>
+        </a>
 
         </div>
     </div>
     </div>
 
-        <script>
-            document.getElementById("customer_name").innerText = localStorage.getItem('username');
-            document.getElementById("customer_email").innerText = localStorage.getItem('useremail');
+    <?php
+    session_start();
+
+        echo "Total Price: $total_price";
+    ?>
+
+    <script>
+
+
              document.getElementById("customer_address").innerText = localStorage.getItem('useraddress');
           //  document.getElementById("dtime").innerText = localStorage.getItem('time');
              document.getElementById("ddate").innerText = localStorage.getItem('date');

@@ -5,8 +5,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\hom;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\homecontroller;
+use App\Http\Controllers\Usercontroller;
 use App\Http\Controllers\MealPlanController;
 use App\Models\meal_plan;
+use App\Livewire\PriceCalculator;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,7 @@ use App\Models\meal_plan;
 //     dd(request());
 // });
 
+Route::get('price-calculator',priceCalculator::class);
 
 Route::get("/",[homecontroller::class,"index"]);
 
@@ -129,6 +132,12 @@ Route::group(['prefix' => 'user'], function () {
     })->name('/summery');
 
 
+
+    Route::post("subscription/summery",function(){
+        return view('pages.summery');
+    });
+
+
     Route::get("subscription/select-menu",function(){
         return view('pages.menu-select');
     });
@@ -204,5 +213,26 @@ Route::middleware([
 // get all the users from the users tabel
 Route::middleware(['role:admin'])->get('/dev', function (Request $request) {
     $users = DB::table('users')->get();
+
+    $products = \App\Models\products::first();
+
+    //create a cart
+    $cart = \App\Models\cart::create([
+        'user_id' => 1,
+        'item_count' => 1,
+        'total' => 0,
+        'tax' => 0,
+        'is_paid' => 1,
+    ]);
+    //add product to cart
+    $cart->products()->attach($products,
+        ['quantity' => 1,
+            'price' => $products->price,
+
+            'tax' => 0,
+        ]);
+
+
+    dd($products, $cart);
     return 'yo dev';
 });

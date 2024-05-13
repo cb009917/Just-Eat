@@ -30,6 +30,9 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
+
+        @livewireStyles
+
         <!-- Styles -->
         @livewireStyles
            <!-- Google Web Fonts -->
@@ -48,6 +51,8 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
+
+        @livewireScripts
 
     <!-- Template Stylesheet -->
     <link href="{{url('css/style.css')}}" rel="stylesheet">

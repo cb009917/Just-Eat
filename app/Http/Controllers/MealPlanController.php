@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\meal_plan;
+
 use App\Http\Requests\Storemeal_planRequest;
 use App\Http\Requests\Updatemeal_planRequest;
 use App\Models\MealPlan;
@@ -54,19 +54,14 @@ class MealPlanController extends Controller
 //        $mealPlan->save();
 
         $mealplan = new MealPlan();
-        $mealplan->name = request('name');
-        $mealplan->address = request('address');
-        $mealplan->email = request('email');
+        $mealplan->Address = request('address');
         $mealplan->city = request('city');
-        $mealplan->state = request('state');
         $mealplan->zip = request('zip');
         $mealplan->First_delivery_on = request('first_delivery_date');
         $mealplan->time = request('time');
         $mealplan->save();
 
         // Redirect or return response
-
-      //  return (dd($mealplan));
        return redirect()->route('/summery')->with('success', 'Meal plan created successfully!');
     }
 

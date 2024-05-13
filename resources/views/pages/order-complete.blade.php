@@ -7,10 +7,10 @@
             padding: 0;
         }
 
-        .container {
+        .container1 {
             padding: 40px;
-            max-width: 600px;
-            margin: 0 auto; /* Centers the container */
+            width: 600px;
+            margin: 40px auto; /* Centers the container */
             background-color: #fff;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
         }
@@ -50,7 +50,7 @@
     </style>
     </head>
     <body>
-    <div class="container">
+    <div class="container1">
         <div class="header">
             <div class="h1">HubSpot</div>
             <div class="text-sm">Order ID: 1234567</div>
@@ -67,7 +67,7 @@
         </div>
 
         <div class="flex justify-center mt-3">
-            <img src="img/shopping-bag.png" width="100px">
+            <img src="{{url('img/shopping-bag.png')}}" width="100px">
         </div>
 
         <div class="content">

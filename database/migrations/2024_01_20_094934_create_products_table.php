@@ -14,16 +14,18 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('category_id');
             $table->decimal('price', 8, 2)->default(0.00);
             $table->text('description')->nullable();
             $table->string('slug')->unique();
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(true);
             $table->string('meta_title')->nullable();
             $table->longText('meta_description')->nullable();
             $table->longText('meta_keywords')->nullable();
             $table->foreignId('parent_id')->nullable()->constrained('products', 'id')->nullOnDelete();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

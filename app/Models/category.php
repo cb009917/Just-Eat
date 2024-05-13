@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MealPlan extends Model
+class category extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    protected $table = 'product_category';
     protected $fillable = [
-        'Address',
-        'email',
-        'city',
-        'zip',
-        'First_delivery_on',
-        'time'
+        'name',
+        'slug',
+        'parent_id',
+        'status',
 
     ];
 }

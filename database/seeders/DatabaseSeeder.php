@@ -28,5 +28,13 @@ class DatabaseSeeder extends Seeder
         $this -> call([
             MealPlanSeeder::class,
         ]);
+
+        $this -> call([
+            CategorySeeder::class,
+        ]);
+
+        $this -> call([
+            ProductsSeeder::class,
+        ]);
     }
 }

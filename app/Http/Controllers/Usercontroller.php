@@ -90,4 +90,13 @@ class Usercontroller extends Controller
         $user->delete();
         return redirect()->route('user.index')->with('success', 'User successfully deleted!');
     }
+
+    public function subscription_info(Request $request){
+        $data['getdata'] = [
+            'serving' => trim($request->serving),
+            'meal_number' => trim($request->meal_number)
+
+        ];
+        return view('pages.summery', $data);
+    }
 }

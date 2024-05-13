@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('meal_plans', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('Address');
             $table->string('First_delivery_on');
             $table->string('time');
             $table->string('email');
             $table->string('city');
-            $table->string('state');
             $table->string('zip');
+
 
         });
     }

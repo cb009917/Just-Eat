@@ -4,19 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class products extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
         'slug',
-        'price', 
+        'price',
         'description',
         'status',
         'meta_title',
         'meta_description',
         'meta_keywords',
     ];
+
+    public function category() : BelongsTo
+    {
+        return $this->belongsTo(category::class);
+    }
 }
