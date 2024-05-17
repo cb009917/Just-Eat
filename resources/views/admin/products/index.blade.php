@@ -130,8 +130,20 @@
 >
     Table with actions
 </h4>
+
+<a href="{{ route('products.create') }}"
+   style="display: block; max-width: 150px; width: 100%; margin: 0 auto; border-radius: 0.375rem; background-color: #4f46e5; padding: 0.5rem 0.75rem; text-align: center; font-size: 0.875rem; font-weight: 600; color: #ffffff; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); text-decoration: none; float: right;"
+   onmouseover="this.style.backgroundColor='#4338ca'"
+   onfocus="this.style.outline='2px solid #4f46e5'; this.style.outlineOffset='2px'"
+   onblur="this.style.outline='none'">
+    Create Product
+</a>
+
+
 <div class="w-full overflow-hidden rounded-lg shadow-xs">
+
     <div class="w-full overflow-x-auto">
+
         <table class="w-full whitespace-no-wrap">
             <thead>
             <tr
@@ -148,7 +160,7 @@
             </thead>
             <tbody
                 class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-            @foreach ($recipes as $recipe)
+            @foreach ($products as $recipe)
             <tr class="text-gray-700 dark:text-gray-400">
                 <td class="px-4 py-3">
                     {{$recipe->id}}
@@ -229,6 +241,6 @@
         <span class="col-span-2"></span>
 
     </div>
-    {{ $recipes->links() }}
+    {{ $products->links() }}
 </div>
 @endsection

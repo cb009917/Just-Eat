@@ -40,7 +40,7 @@
                 <a
                     class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150  {{ request()->routeIs('recipe.index') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-800 dark:text-gray-200' }}"
 
-                    href="{{ route ('recipe.index')}}"
+                    href="{{ route ('products.index')}}"
                 >
                     <svg
                         class="w-5 h-5"

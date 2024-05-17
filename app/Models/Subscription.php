@@ -11,6 +11,7 @@ class Subscription extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'user_id',
         'start_date',
         'end_date',
         'status',

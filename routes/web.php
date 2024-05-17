@@ -59,7 +59,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'product'], function () {
 
         // product resource route
-        Route::resource('products', BaseController::class);
+        Route::resource('products', \App\Http\Controllers\ProductsController::class);
 
         // product category resource route
         Route::resource('categorys', BaseController::class);
@@ -108,7 +108,7 @@ Route::group(['prefix' => 'user'], function () {
 
 
     //subscription route
-    Route::resource('subscriptions', BaseController::class);
+    Route::resource('subscriptions', \App\Http\Controllers\subscriptionController::class);
 
     //review route
     Route::resource('reviews', BaseController::class);
@@ -146,19 +146,21 @@ Route::group(['prefix' => 'user'], function () {
     Route::get("subscription/order-complete",function(){
         return view('pages.order-complete');
     });
+
+
+
 });
+Route::get("menu",[\App\Http\Controllers\ProductsController::class,"show_product"]);
 
 
-
-
+Route::get('add_to_cart/{id}',[\App\Http\Controllers\ProductsController::class,"addtocart"])->name('add_to_cart');
+Route::get('cart',[\App\Http\Controllers\ProductsController::class,"cart"])->name('cart');
+Route::get('/checkout', [\App\Http\Controllers\Stripecontroller::class, "checkout"])->name('checkout');
 
 Route::get("/contact",function(){
     return view('pages.contact');
 });
 
-Route::get("/menu",function(){
-    return view('pages.menu');
-});
 
 
 

@@ -26,6 +26,8 @@ class Order extends Model
         'billing_city',
         'billing_mobile',
         'shipping_cost',
+        'shipping_status',
+        'payment_status',
         'total',
         'payment_method',
     ];

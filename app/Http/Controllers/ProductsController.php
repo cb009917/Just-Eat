@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\products;
+use App\Models\product;
 use App\Http\Requests\StoreproductsRequest;
 use App\Http\Requests\UpdateproductsRequest;
+use App\Models\spatie;
+use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
@@ -13,18 +15,22 @@ class ProductsController extends Controller
      */
     public function index()
     {
-//          return view('admin.products.index',[
-//             'products' => products::paginate(1),
-//
-//         ]);
+          return view('admin.products.index',[
+             'products' => product::paginate(5),
+
+         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
+
+        return view('admin.products.form',[
+            'product' => (new product()),
+        ]);
     }
 
     /**
@@ -32,7 +38,31 @@ class ProductsController extends Controller
      */
     public function store(StoreproductsRequest $request)
     {
-        //
+                 $save = new product();
+            $save->name = request('name');
+            $save->price = request('price');
+            $save->slug = request('name');
+            $save->description = request('description');
+            $save->category_id = request('category');
+
+
+//        if(!empty($request->file('image_file'))) {
+//            $ext = $request->file('image_file')->getClientOriginalExtension();
+//            $file = $request->file('image_file');
+//            $filename = request('name') . '.' . $ext;
+//            $file->move('upload/productimg/', $filename);
+//            $save->image_file = $filename;
+//        }
+
+        $spatie = product::find(1);;
+        $spatie
+            ->addMedia($request->file('image_file'))
+            ->toMediaCollection();
+            $save->save();
+
+
+
+        return redirect()->route('products.index')->with('success', 'Product successfully created!');
     }
 
     /**
@@ -77,5 +107,34 @@ class ProductsController extends Controller
     {
         $products->delete();
         return redirect()->route('products.index')->with('success', 'Product successfully deleted!');
+    }
+
+    public function show_product(){
+        $data['products'] = product::get();
+        return view('pages.menu', $data);
+    }
+
+    public function addtocart($id){
+        $product = product::findOrFail($id);
+        $cart = session()->get('cart', []);
+
+        if(isset($cart[$id])){
+            $cart[$id]['quantity']++;
+        }
+        else{
+            $cart[$id] = [
+                "product_name" => $product->name,
+                "image" => $product->imageget(),
+                "price"=> $product->price,
+                "quantity"=> 1
+            ];
+        }
+
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+
+    public function cart(){
+        return view('pages.cart');
     }
 }

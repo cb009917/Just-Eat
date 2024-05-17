@@ -17,7 +17,7 @@
 
     </style>
     <div class="container mx-auto mt-1">
-<form  action="{{route('meal_plan.store')}}" method="POST">
+<form  action="{{route('subscriptions.create')}}">
 @csrf
 
     <div class="flex flex-wrap -mx-3 mb-6 mt-4">
@@ -60,10 +60,10 @@
                 Delivery time
             </label>
             <div class="relative">
-                <select class="block appearance-none w-3xl bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                    <option>09:00 AM - 10:00 AM</option>
-                    <option>11:00 AM - 12:00 AM</option>
-                    <option>01:00 PM - 02:00 PM</option>
+                <select class="block appearance-none w-3xl bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" name="time">
+                    <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
+                    <option value="11:00 AM - 12:00 AM">11:00 AM - 12:00 AM</option>
+                    <option value="11:00 AM - 12:00 AM">11:00 AM - 12:00 AM</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 </div>
@@ -77,9 +77,9 @@
         </div>
     </div>
 
-    <a href="subscription/summery">
+
     <button class="green-button" type="submit">Next</button>
-    </a>
+
 
 
 </form>

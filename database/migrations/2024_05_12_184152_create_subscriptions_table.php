@@ -20,6 +20,8 @@ return new class extends Migration {
             $table->integer('Number_of_meals');
             $table->integer('Number_of_servings');
             $table->string('delivery_address');
+            $table->string('city');
+            $table->integer('zip');
             $table->softDeletes();
             $table->timestamps();
         });

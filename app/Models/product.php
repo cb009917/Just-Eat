@@ -6,21 +6,34 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class products extends Model
+class product extends Model implements HasMedia
 {
     use HasFactory, SoftDeletes;
+
+    use InteractsWithMedia;
 
     protected $fillable = [
         'name',
         'slug',
         'price',
         'description',
+        'image_file',
         'status',
         'meta_title',
         'meta_description',
         'meta_keywords',
     ];
+
+    public function imageget() {
+        if (!empty($this->image_file) && file_exists('upload/productimg/' . $this->image_file)) {
+            return asset('upload/productimg/' . $this->image_file); // Use asset() for proper URL
+        } else {
+            return "";
+        }
+    }
 
     public function category() : BelongsTo
     {

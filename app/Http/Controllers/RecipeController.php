@@ -13,10 +13,9 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        return view('admin.products.index',[
-            'recipes' => Recipe::paginate(5),
-
-        ]);
+//        return view('admin.products.index',[
+//            'recipes' => Recipe::paginate(5),
+//        ]);
     }
 
     /**
@@ -26,7 +25,6 @@ class RecipeController extends Controller
     {
         return view('admin.products.form',[
             'recipe' => (new Recipe()),
-
         ]);
     }
 
@@ -36,7 +34,6 @@ class RecipeController extends Controller
     public function store(StoreRecipeRequest $request)
     {
         (new Recipe())->create($request->all());
-
         return redirect()->route('recipe.index');
     }
 
