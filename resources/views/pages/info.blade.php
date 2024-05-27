@@ -1,5 +1,4 @@
 <x-app-layout>
-
     <style>
         .green-button {
             background-color: #4CAF50; /* Green background */
@@ -14,52 +13,62 @@
         .green-button:hover {
             background-color: #45a049; /* Darker green on hover */
         }
-
     </style>
-    <div class="container mx-auto mt-1">
-<form  action="{{route('subscriptions.create')}}">
-@csrf
 
-    <div class="flex flex-wrap -mx-3 mb-6 mt-4">
-        <div class="w-full px-3">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                Delivery Address
-            </label>
-            <input class="block w-full lg:w-3/4 xl:w-2/4 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" name="address" style="width: 500px">
-            <p class="text-gray-600 text-xs italic">This will be used to deliver the meals</p>
+    <div class="container mx-auto mt-1 flex">
+        <div class="w-full lg:w-2/3">
+            <form action="{{route('subscriptions.create')}}">
+                @csrf
+
+                <div class="flex flex-wrap -mx-3 mb-6 mt-4">
+                    <div class="w-full px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                            Delivery Address
+                        </label>
+                        <input class="block w-full lg:w-3/4 xl:w-2/4 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" name="address" style="width: 500px">
+                        <p class="text-gray-600 text-xs italic">This will be used to deliver the meals</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap -mx-5 mb-6">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                            City
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" name="city">
+                    </div>
+                    <div class="w-full md:w-1/2 px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                            Zip code
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" name="zip">
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+                        Contact
+                    </label>
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Albuquerque">
+                </div>
+
+                <div class="flex flex-wrap -mx-3 mb-2">
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                            Delivery time
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <button class="green-button" type="submit">Next</button>
+
         </div>
-    </div>
-
-    <div class="flex flex-wrap -mx-5 mb-6">
-        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                City
-            </label>
-            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" name="city">
-
-        </div>
-        <div class="w-full md:w-1/2 px-3">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-                Zip code
-            </label>
-            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" name="zip">
-        </div>
-    </div>
-
-    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
-            Contact
-        </label>
-        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Albuquerque">
-    </div>
-
-    <div class="flex flex-wrap -mx-3 mb-2">
-
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                Delivery time
-            </label>
+        <div>
+            <div class="ml-6">
             <div class="relative">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-black">Delivery Time</h2>
                 <select class="block appearance-none w-3xl bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" name="time">
                     <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
                     <option value="11:00 AM - 12:00 AM">11:00 AM - 12:00 AM</option>
@@ -68,30 +77,75 @@
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 </div>
             </div>
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-black mt-4">Subscription period</h2>
+            <div class=" lg:w-1/3 flex flex-wrap">
+            <div class=" sm:w-1/2 p-2">
+                <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+                    <div class="flex items-start">
+                        <div class="flex h-5 items-center">
+                            <input id="fedex1" aria-describedby="fedex-text1" type="radio" name="delivery-method" value="1" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
+                        </div>
+                        <div class="ms-4 text-sm">
+                            <label for="fedex1" class="font-medium leading-none text-gray-900 dark:text-white"> 1 Month </label>
+                            <p id="fedex-text1" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">Non-Refundable</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full sm:w-1/2 p-2">
+                <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+                    <div class="flex items-start">
+                        <div class="flex h-5 items-center">
+                            <input id="fedex2" aria-describedby="fedex-text2" type="radio" name="delivery-method" value="3" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
+                        </div>
+                        <div class="ms-4 text-sm">
+                            <label for="fedex2" class="font-medium leading-none text-gray-900 dark:text-white"> 3 Months </label>
+                            <p id="fedex-text2" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">Non-Refundable</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full sm:w-1/2 p-2">
+                <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+                    <div class="flex items-start">
+                        <div class="flex h-5 items-center">
+                            <input id="fedex3" aria-describedby="fedex-text3" type="radio" name="delivery-method" value="6" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
+                        </div>
+                        <div class="ms-4 text-sm">
+                            <label for="fedex3" class="font-medium leading-none text-gray-900 dark:text-white"> 6 Months </label>
+                            <p id="fedex-text3" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">Non-Refundable</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full sm:w-1/2 p-2">
+                <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
+                    <div class="flex items-start">
+                        <div class="flex h-5 items-center">
+                            <input id="fedex4" aria-describedby="fedex-text4" type="radio" name="delivery-method" value="12" class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
+                        </div>
+                        <div class="ms-4 text-sm">
+                            <label for="fedex4" class="font-medium leading-none text-gray-900 dark:text-white"> 12 Months </label>
+                            <p id="fedex-text4" class="mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">Non-Refundable</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
         </div>
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
-                Delivery date
-            </label>
-            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" name="first_delivery_date" type="date">
+        </forn>
         </div>
     </div>
-
-
-    <button class="green-button" type="submit">Next</button>
-
-
-
-</form>
-
-        <script>
-            function y() {
-                localStorage.setItem('username', document.getElementById("first-name").value);
-                localStorage.setItem('useremail', document.getElementById("email").value);
-                localStorage.setItem('useraddress', document.getElementById("street-address").value);
-                localStorage.setItem('date', document.getElementById("first_delivery_date").value);
-                localStorage.setItem('time', document.querySelector("select[name='time']").value);
-            }
-        </script>
-    </div>
+<?php
+session(['period' => ('delivery-method')]);
+?>
+    <script>
+        function y() {
+            localStorage.setItem('username', document.getElementById("first-name").value);
+            localStorage.setItem('useremail', document.getElementById("email").value);
+            localStorage.setItem('useraddress', document.getElementById("street-address").value);
+            localStorage.setItem('date', document.getElementById("first_delivery_date").value);
+            localStorage.setItem('time', document.querySelector("select[name='time']").value);
+        }
+    </script>
 </x-app-layout>

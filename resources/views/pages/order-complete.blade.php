@@ -48,8 +48,7 @@
             margin-top: 10px;
         }
     </style>
-    </head>
-    <body>
+
     <div class="container1">
         <div class="header">
             <div class="h1">HubSpot</div>

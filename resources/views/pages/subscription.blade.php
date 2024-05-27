@@ -101,6 +101,7 @@ mealNumberButtons.forEach(button => {
 
 
       selectedPreferences.textContent = 'Selected Preferences: ' + selectedValues.join(', ');
+              localStorage.setItem('preference', selectedValues);
           });
         });
 

@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 
 class Stripecontroller extends Controller
 {
-    public function checkout()
+    public function checkout(Request $request)
     {
+
+        $total = session('total');
+        $name = session('paymenttype');
+
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
 
         $session = \Stripe\Checkout\Session::create([
@@ -15,16 +19,21 @@ class Stripecontroller extends Controller
             'line_items' => [[
                 'price_data' => [
                     'currency' => 'lkr',
+
                     'product_data' => [
-                        'name' => 'T-shirt',
+
+                        'name' => $name
+
                     ],
-                    'unit_amount' => 20000,
+
+                    'unit_amount' => $total * 100,
                 ],
                 'quantity' => 1,
             ]],
             'mode' => 'payment',
-            'success_url' => route('/summery'),
+            'success_url' => route('/order_complete'),
             'cancel_url' => route('/subscription'),
         ]);
+        return redirect()->away($session->url);
     }
 }

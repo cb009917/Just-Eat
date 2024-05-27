@@ -138,14 +138,11 @@ Route::group(['prefix' => 'user'], function () {
     });
 
 
-    Route::get("subscription/select-menu",function(){
-        return view('pages.menu-select');
-    });
+    Route::get("subscription/select-menu/{preference}",[\App\Http\Controllers\ProductsController::class, "show_dish"]);
 
 
-    Route::get("subscription/order-complete",function(){
-        return view('pages.order-complete');
-    });
+
+    Route::get("subscription/order-complete",[\App\Http\Controllers\ProductsController::class,'order_complete'])->name('/order_complete');;
 
 
 
@@ -154,6 +151,7 @@ Route::get("menu",[\App\Http\Controllers\ProductsController::class,"show_product
 
 
 Route::get('add_to_cart/{id}',[\App\Http\Controllers\ProductsController::class,"addtocart"])->name('add_to_cart');
+Route::post('add/{id}',[\App\Http\Controllers\ProductsController::class,"add"])->name('add');
 Route::get('cart',[\App\Http\Controllers\ProductsController::class,"cart"])->name('cart');
 Route::get('/checkout', [\App\Http\Controllers\Stripecontroller::class, "checkout"])->name('checkout');
 

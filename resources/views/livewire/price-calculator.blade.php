@@ -48,13 +48,13 @@
 
                     <hr>
                     <label>Box Price</label>
-                    <span id="Box-price"></span>
+                    <span id="Box-price">{{$box_price}}</span>
                     <br>
                     <label >service charge</label>
-                    <span id="service-charge"></span>
+                    <span id="service-charge">{{$service_charge}}</span>
                     <br>
                     <div class="total">
-                        <label>Total price</label>
+                        <label>Total price per week</label>
                         <span id="serving">{{ $TotalPrice }}</span>
                     </div>
                     <a href="subscription/user-information">
@@ -72,6 +72,5 @@
 
 
 <?php
-session_start();
-$_SESSION['total_price'] = $TotalPrice;
+session(['totalprice' => $TotalPrice]);
 ?>

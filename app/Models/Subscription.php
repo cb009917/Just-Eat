@@ -16,7 +16,7 @@ class Subscription extends Model
         'end_date',
         'status',
         'delivery_time',
-        'delivery_date',
+        'subscription_period',
         'price',
         'preference',
         'Number_of_meals',
@@ -28,6 +28,7 @@ class Subscription extends Model
         'start_date' => 'date',
         'end_date' => 'date',
         'delivery_date' => 'date',
+        'preference' => 'array'
     ];
 
     protected function user(): BelongsTo

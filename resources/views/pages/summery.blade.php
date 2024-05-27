@@ -179,7 +179,14 @@
     }
 
 </style>
+<?php
+$weektotal = session('totalprice');
+$period = session('period');
+$totalprice = ($weektotal * 4) * $period;
+session(['total' => $totalprice]);
+session(['paymenttype' => 'Subscription']);
 
+    ?>
 
     <div class=" card-container ">
 <div class="w-full max-w-sm md:max-w-3xl xl:max-w-sm flex items-start flex-col gap-8 max-xl:mx-auto">
@@ -198,13 +205,17 @@
                 <p class="font-medium text-lg leading-8 text-gray-600">500</p>
             </div>
             <div class="flex items-center justify-between gap-4 ">
-                <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700 ">Coupon Code</p>
-                <p class="font-medium text-lg leading-8 text-emerald-500">#APPLIED</p>
+                <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700 ">Weekly price</p>
+                <p class="font-medium text-lg leading-8 text-emerald-500">{{$weektotal}}</p>
+            </div>
+            <div class="flex items-center justify-between gap-4 ">
+                <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700 ">Subscription Period</p>
+                <p class="font-medium text-lg leading-8 text-emerald-500">{{$period}}</p>
             </div>
         </div>
         <div class="total flex items-center justify-between pt-6">
             <p class="font-normal text-xl leading-8 text-black ">Subtotal</p>
-            <h5 class="font-manrope font-bold text-2xl leading-9 text-indigo-600">{{$total_price}}</h5>
+            <h5 class="font-manrope font-bold text-2xl leading-9 text-indigo-600">{{$totalprice}}</h5>
         </div>
     </div>
 </div>
@@ -269,7 +280,7 @@
         </div>
 
 
-        <a href="select-menu">
+        <a id="continue-button">
             <button class="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-black font-bold py-2 px-4 rounded shadow" >
                 Continue
             </button>
@@ -279,20 +290,23 @@
     </div>
     </div>
 
-    <?php
-    session_start();
 
-        echo "Total Price: $total_price";
-    ?>
 
     <script>
 
+        document.getElementById('continue-button').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default anchor click behavior
+            let preference = localStorage.getItem('preference');
 
+            // Redirect to the menu page with the preference as a query parameter
+            window.location.href = `select-menu/${preference}`;
+        });
              document.getElementById("customer_address").innerText = localStorage.getItem('useraddress');
           //  document.getElementById("dtime").innerText = localStorage.getItem('time');
              document.getElementById("ddate").innerText = localStorage.getItem('date');
             document.getElementById("bprice").innerHTML = localStorage.getItem('box_price');
             document.getElementById("tprice").innerText = localStorage.getItem('total_price');
+
 
             var now = new Date();
             var day = now.getDate().toString().padStart(2, '0');

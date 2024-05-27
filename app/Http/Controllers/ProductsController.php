@@ -7,6 +7,7 @@ use App\Http\Requests\StoreproductsRequest;
 use App\Http\Requests\UpdateproductsRequest;
 use App\Models\spatie;
 use Illuminate\Http\Request;
+use function Laravel\Prompts\select;
 
 class ProductsController extends Controller
 {
@@ -137,4 +138,30 @@ class ProductsController extends Controller
     public function cart(){
         return view('pages.cart');
     }
+public function show_dish($preference){
+        $data['dish'] = product::getsingle($preference);
+        return view('pages.menu-select', $data);
+}
+
+    public function add($id){
+        $product = product::findOrFail($id);
+        $Mealcart = session()->get('Mealcart', []);
+
+         $Mealcart[$id] = [
+                "quantity"=> 1
+            ];
+
+        session()->put('Mealcart', $Mealcart);
+
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+
+    public function order_complete(){
+
+        session()->forget('cart');
+        return view('pages.order-complete');
+    }
+
+
+
 }

@@ -35,8 +35,19 @@ class product extends Model implements HasMedia
         }
     }
 
+    static public function getsingle($preference){
+        return self::select('products.*')
+            ->where('products.category', '=', $preference)
+            ->get();
+    }
+
     public function category() : BelongsTo
     {
         return $this->belongsTo(category::class);
+    }
+
+    public function mealpreference()
+    {
+        return $this->belongsToMany(mealpreference::class);
     }
 }

@@ -13,7 +13,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
         "spatie/laravel-medialibrary": "^11.4",
-        "stripe/stripe-php": "^14.6"
+        "stripe/stripe-php": "^14.8"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

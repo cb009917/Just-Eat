@@ -32,43 +32,52 @@
                     <button class="btn btn-danger btn-sm cart_remove"><i class="fa fa-trash-o"></i> Delete</button>
                 </td>
             </tr>
+                <?php
+                $dish = array( $details['product_name']);
+                ?>
         @endforeach
     @endif
     </tbody>
     <tfoot>
     <tr>
-        <td colspan="5" class="text-right"><h3><strong>Total ${{ $total }}</strong></h3></td>
+        <td colspan="5" class="text-right"><h3><strong>Total LKR{{ $total }}</strong></h3></td>
     </tr>
     <tr>
         <td colspan="5" class="text-right">
             <a href="{{ url('/') }}" class="btn btn-danger"> <i class="fa fa-arrow-left"></i> Continue Shopping</a>
-            <a href="{{ route('checkout') }}" class="btn btn-warning">Checkout <i class="fa fa-arrow-right"></i></a>
-            <button class="btn btn-success"><i class="fa fa-money"></i> Checkout</button>
+            <a href="{{ route('checkout') }}" class="btn btn-success">Checkout <i class="fa fa-arrow-right"></i></a>
+
         </td>
     </tr>
     </tfoot>
 </table>
 
-{{--    <script type="text/javascript">--}}
+    @php
+        session(['total' => $total]);
+        session(['paymenttype' => 'One Time Payment']);
 
-{{--        $(".cart_update").change(function (e) {--}}
-{{--            e.preventDefault();--}}
+    @endphp
 
-{{--            var ele = $(this);--}}
+    <script type="text/javascript">
 
-{{--            $.ajax({--}}
-{{--                url: '{{ route('update_cart') }}',--}}
-{{--                method: "patch",--}}
-{{--                data: {--}}
-{{--                    _token: '{{ csrf_token() }}',--}}
-{{--                    id: ele.parents("tr").attr("data-id"),--}}
-{{--                    quantity: ele.parents("tr").find(".quantity").val()--}}
-{{--                },--}}
-{{--                success: function (response) {--}}
-{{--                    window.location.reload();--}}
-{{--                }--}}
-{{--            });--}}
-{{--        });--}}
+        {{--$(".cart_update").change(function (e) {--}}
+        {{--    e.preventDefault();--}}
+
+        {{--    var ele = $(this);--}}
+
+        {{--    $.ajax({--}}
+        {{--        url: '{{ route('update_cart') }}',--}}
+        {{--        method: "patch",--}}
+        {{--        data: {--}}
+        {{--            _token: '{{ csrf_token() }}',--}}
+        {{--            id: ele.parents("tr").attr("data-id"),--}}
+        {{--            quantity: ele.parents("tr").find(".quantity").val()--}}
+        {{--        },--}}
+        {{--        success: function (response) {--}}
+        {{--            window.location.reload();--}}
+        {{--        }--}}
+        {{--    });--}}
+        {{--});--}}
 
 {{--        $(".cart_remove").click(function (e) {--}}
 {{--            e.preventDefault();--}}
@@ -90,6 +99,6 @@
 {{--            }--}}
 {{--        });--}}
 
-{{--    </script>--}}
+    </script>
 </x-app-layout>
-```
+

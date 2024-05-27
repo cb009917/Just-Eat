@@ -10,15 +10,14 @@ return new class extends Migration {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->boolean('status');
-            $table->time('delivery_time');
-            $table->date('delivery_date');
-            $table->integer('price');
-            $table->string('preference');
-            $table->integer('Number_of_meals');
-            $table->integer('Number_of_servings');
+            $table->boolean('status')->default(0);
+            $table->string('delivery_time');
+            $table->integer('subscription_period');
+            $table->date('delivery_date')->nullable();
+            $table->integer('price')->nullable();
+            $table->string('preference')->nullable();
+            $table->integer('Number_of_meals')->nullable();
+            $table->integer('Number_of_servings')->nullable();
             $table->string('delivery_address');
             $table->string('city');
             $table->integer('zip');
