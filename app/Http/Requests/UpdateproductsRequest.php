@@ -11,7 +11,7 @@ class UpdateproductsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateproductsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'price' => 'required|numeric|min:0',
+            'category' => 'required|string|in:Meat,Keto,Vegan,Pescatarian,Gluten free',
+            'image_file' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 }

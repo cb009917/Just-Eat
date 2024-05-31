@@ -13,22 +13,17 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'cart_id',
-        'shipping_first_name',
-        'shipping_last_name',
-        'shipping_post_code',
-        'shipping_address',
-        'shipping_city',
-        'shipping_mobile',
         'billing_first_name',
         'billing_last_name',
         'billing_post_code',
         'billing_address',
         'billing_city',
         'billing_mobile',
-        'shipping_cost',
+        'cost',
         'shipping_status',
         'payment_status',
         'total',
+        'email',
         'payment_method',
     ];
 
@@ -42,5 +37,9 @@ class Order extends Model
     protected function cart(): BelongsTo
     {
         return $this->belongsTo(cart::class);
+    }
+    public function products()
+    {
+        return $this->belongsToMany(product::class)->using(order_product::class)->withPivot('quantity');
     }
 }

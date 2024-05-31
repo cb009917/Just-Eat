@@ -45,7 +45,7 @@
     <tr>
         <td colspan="5" class="text-right">
             <a href="{{ url('/') }}" class="btn btn-danger"> <i class="fa fa-arrow-left"></i> Continue Shopping</a>
-            <a href="{{ route('checkout') }}" class="btn btn-success">Checkout <i class="fa fa-arrow-right"></i></a>
+            <a href="{{ route('order_checkout') }}" class="btn btn-success">Checkout <i class="fa fa-arrow-right"></i></a>
 
         </td>
     </tr>

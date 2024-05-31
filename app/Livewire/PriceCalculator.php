@@ -4,8 +4,10 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
+
 class PriceCalculator extends Component
 {
+        public $selectedPreference;
         public $serving = 2;
 
         public $number_of_meals = 2;
@@ -62,5 +64,8 @@ class PriceCalculator extends Component
 
         return view('livewire.price-calculator');
     }
-
 }
+
+
+
+

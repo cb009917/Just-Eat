@@ -6,7 +6,6 @@ use App\Http\Controllers\hom;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\homecontroller;
 use App\Http\Controllers\Usercontroller;
-use App\Http\Controllers\MealPlanController;
 use App\Models\meal_plan;
 use App\Livewire\PriceCalculator;
 
@@ -28,6 +27,12 @@ use App\Livewire\PriceCalculator;
 // });
 
 Route::get('price-calculator',priceCalculator::class);
+Route::get('Dashboard',[\App\Http\Controllers\analyticController::class,"analytics"])->name('Dashboard');
+
+Route::post('/store-preference', [\App\Http\Controllers\subscriptionController::class, 'storePreference'])->name('store.preference');
+
+
+
 
 Route::get("/",[homecontroller::class,"index"]);
 
@@ -59,7 +64,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'product'], function () {
 
         // product resource route
-        Route::resource('products', \App\Http\Controllers\ProductsController::class);
+       // Route::resource('products', \App\Http\Controllers\ProductsController::class);
 
         // product category resource route
         Route::resource('categorys', BaseController::class);
@@ -148,24 +153,27 @@ Route::group(['prefix' => 'user'], function () {
 
 });
 Route::get("menu",[\App\Http\Controllers\ProductsController::class,"show_product"]);
-
+Route::get("Dashboard/subscription", [\App\Http\Controllers\subscriptionController::class, 'All_subscriptions']);
+Route::get("Dashboard/order/{id}", [\App\Http\Controllers\OrderController::class, 'order_details']);
 
 Route::get('add_to_cart/{id}',[\App\Http\Controllers\ProductsController::class,"addtocart"])->name('add_to_cart');
 Route::post('add/{id}',[\App\Http\Controllers\ProductsController::class,"add"])->name('add');
 Route::get('cart',[\App\Http\Controllers\ProductsController::class,"cart"])->name('cart');
+Route::get('order_checkout',[\App\Http\Controllers\OrderController::class,"order_checkout"])->name('order_checkout');
 Route::get('/checkout', [\App\Http\Controllers\Stripecontroller::class, "checkout"])->name('checkout');
-
-Route::get("/contact",function(){
-    return view('pages.contact');
-});
-
-
+Route::post('order_checkout', [\App\Http\Controllers\OrderController::class, "create_order"])->name('create_order');
+Route::get('Dashboard/orders', [\App\Http\Controllers\OrderController::class, "all_orders"])->name('all_orders');
+Route::get('Dashboard/user/orders', [\App\Http\Controllers\OrderController::class, "user_orders"])->name('user_orders');
+Route::get('Dashboard/user/subscription', [\App\Http\Controllers\OrderController::class, "user_subscription"])->name('user_orders');
 
 
 
-Route::get("/smenu",function(){
-    return view('pages.select-menu');
-});
+
+
+
+//Route::get("/smenu",function(){
+//    return view('pages.select-menu');
+//});
 
 
 
@@ -182,30 +190,11 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
-    Route::get('/dashboard', function () {
-       return view('dashboard');
-    })->name('dashboard');
-
-    Route::resource('products', \App\Http\Controllers\ProductsController::class);
+    Route::resource('products',\App\Http\Controllers\ProductsController::class);
     Route::resource('user', \App\Http\Controllers\Usercontroller::class);
-    Route::resource('recipe', \App\Http\Controllers\RecipeController::class);
-     //Route::post('meal-plans', [MealPlanController::class, 'store']);
-    Route::resource('meal_plan', \App\Http\Controllers\MealPlanController::class);
 
-//    Route::post('/meal-plans',function(){
-//        $mealplan = new meal_plan();
-//        $mealplan->name = request('name');
-//        $mealplan->address = request('address');
-//        $mealplan->email = request('email');
-//        $mealplan->city = request('city');
-//        $mealplan->state = request('state');
-//        $mealplan->zip = request('zip');
-//        $mealplan->First_delivery_on = request('first_delivery_date');
-//        $mealplan->time = request('time');
-//        $mealplan->save();
-//
-//        return redirect('/summery');
-//});
+
+
 
 });
 
@@ -214,25 +203,24 @@ Route::middleware([
 Route::middleware(['role:admin'])->get('/dev', function (Request $request) {
     $users = DB::table('users')->get();
 
-    $products = \App\Models\products::first();
+//    $products = \App\Models\products::first();
+//
+//    //create a cart
+//    $cart = \App\Models\cart::create([
+//        'user_id' => 1,
+//        'item_count' => 1,
+//        'total' => 0,
+//        'tax' => 0,
+//        'is_paid' => 1,
+//    ]);
+//    //add product to cart
+//    $cart->products()->attach($products,
+//        ['quantity' => 1,
+//            'price' => $products->price,
+//            'tax' => 0,
+//        ]);
 
-    //create a cart
-    $cart = \App\Models\cart::create([
-        'user_id' => 1,
-        'item_count' => 1,
-        'total' => 0,
-        'tax' => 0,
-        'is_paid' => 1,
-    ]);
-    //add product to cart
-    $cart->products()->attach($products,
-        ['quantity' => 1,
-            'price' => $products->price,
-
-            'tax' => 0,
-        ]);
-
-
-    dd($products, $cart);
-    return 'yo dev';
+//
+//    dd($products, $cart);
+//    return 'yo dev';
 });

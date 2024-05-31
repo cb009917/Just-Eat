@@ -37,7 +37,7 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link href="{{ route('dashboard') }}">
+                                    <x-dropdown-link href="{{ route('Dashboard') }}">
                                         {{ __('Dashboard') }}
                                     </x-dropdown-link>
                                     <form method="POST" action="{{ route('logout') }}" x-data>

@@ -14,17 +14,25 @@ class subscriptionController extends Controller
 
     public function create()
     {
+
         $mealplan = new Subscription();
         $mealplan->delivery_address = request('address');
         $mealplan->city = request('city');
         $mealplan->zip = request('zip');
         $mealplan->delivery_time = request('time');
         $mealplan->subscription_period = request('delivery-method');
+        $mealplan->price = session('totalprice');
+        $mealplan->Number_of_meals = session('number_of_meals');
+        $mealplan->Number_of_servings = session('number_of_serving');
+        $mealplan->preference = session('preference');
         $mealplan->user_id   = Auth()->user()->id;
         $mealplan->save();
 
 
         session(['period' => request('delivery-method')]);
+        session(['id' => $mealplan->id]);
+
+
 
         return redirect()->route('/summery');
     }
@@ -48,5 +56,18 @@ class subscriptionController extends Controller
 
     public function destroy($id)
     {
+    }
+
+    public function All_subscriptions(){
+        $data['subscriptions'] = Subscription::paginate(10);
+        return view('admin.subscription.index', $data);
+    }
+
+    public function storePreference(Request $request)
+    {
+        $preference = $request->input('preference');
+        session(['preference' => $preference]);
+
+        return response()->json(['success' => true]);
     }
 }

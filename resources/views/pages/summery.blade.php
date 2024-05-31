@@ -182,9 +182,11 @@
 <?php
 $weektotal = session('totalprice');
 $period = session('period');
+$meals = session('number_of_meals');
 $totalprice = ($weektotal * 4) * $period;
 session(['total' => $totalprice]);
 session(['paymenttype' => 'Subscription']);
+$pre = session('preference');
 
     ?>
 
@@ -198,7 +200,7 @@ session(['paymenttype' => 'Subscription']);
         <div class="data py-6 border-b border-gray-200">
             <div class="flex items-center justify-between gap-4 mb-5">
                 <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700">Box price </p>
-                <p class="font-medium text-lg leading-8 text-gray-900"></p>
+                <p class="font-medium text-lg leading-8 text-gray-900">{{$pre}}</p>
             </div>
             <div class="flex items-center justify-between gap-4 mb-5">
                 <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700">Shipping</p>

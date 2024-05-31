@@ -15,6 +15,7 @@ class product extends Model implements HasMedia
 
     use InteractsWithMedia;
 
+    protected $table = 'products';
     protected $fillable = [
         'name',
         'slug',
@@ -49,5 +50,15 @@ class product extends Model implements HasMedia
     public function mealpreference()
     {
         return $this->belongsToMany(mealpreference::class);
+    }
+
+    public function mealKits()
+    {
+        return $this->belongsToMany(meal_kit::class)->using(meal_kit_product::class)->withPivot('quantity');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class)->using(order_product::class)->withPivot('quantity');
     }
 }

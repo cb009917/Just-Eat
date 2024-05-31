@@ -25,6 +25,7 @@
     ></script>
     <script src="./assets1/js/charts-lines.js" defer></script>
     <script src="./assets1/js/charts-pie.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -36,7 +37,7 @@
 @include('backend.layout.side-bar')
 <div class="container px-6 mx-auto grid">
 
-<main class="h-full overflow-y-auto">
+<main class="h-full ">
     @yield('content')
 </main>
 </div>

@@ -10,14 +10,7 @@ return new class extends Migration {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('cart_id');
-
-            $table->string('shipping_first_name');
-            $table->string('shipping_last_name');
-            $table->string('shipping_post_code');
-            $table->string('shipping_address');
-            $table->string('shipping_city');
-            $table->string('shipping_mobile');
+            $table->foreignId('cart_id')->nullable();
 
             $table->string('billing_first_name');
             $table->string('billing_last_name');
@@ -25,13 +18,14 @@ return new class extends Migration {
             $table->string('billing_address');
             $table->string('billing_city');
             $table->string('billing_mobile');
+            $table->string('email');
 
             $table->tinyInteger('delivery_status')->default(0);
             $table->tinyInteger('payment_status')->default(0);
 
-            $table->float('shipping_cost');
+            $table->float('shipping_cost')->nullable();
             $table->float('total');
-            $table->tinyInteger('payment_method');
+            $table->string('payment_method')->default('Online');
 
             $table->softDeletes();
             $table->timestamps();

@@ -5,7 +5,7 @@
                 <div class="col-lg-6 text-center text-lg-start">
                     <h1 class="display-3 text-white animated slideInLeft">Celebrate the <br> flavours of life </h1>
 
-                    <a href="{{route('/subscription')}}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Get Started</a>
+                    <a href="{{url('Subscription')}}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Get Started</a>
                 </div>
                 <div class="col-lg-6 text-center text-lg-end overflow-hidden">
 

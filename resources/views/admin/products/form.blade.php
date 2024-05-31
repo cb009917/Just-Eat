@@ -7,9 +7,10 @@
             <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you share.</p>
           </div>
 
+
         <form method="post"
-          @if($product->id)
-          action="{{ route('products.update', $product->id) }}"
+          @if($products->id)
+          action="{{ route('products.update', $products->id) }}"
          @else
           action="{{ route('products.store') }}"
           @endif
@@ -17,7 +18,7 @@
               enctype="multipart/form-data">
 
           @csrf
-          @if ($product->id)
+          @if ($products->id)
             @method('PUT')
           @endif
             <div class="px-4 py-6 sm:p-8">
@@ -29,7 +30,7 @@
                   <label for="name" class="block text-sm font-medium leading-6 text-gray-900"> Name</label>
 
                   <div class="mt-2">
-                    <input  value="{{ old('name', $product->name) }}" id="name" name="name" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <input  value="{{ old('name', $products->name) }}" id="name" name="name" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                   </div>
                   <p class="mt-3 text-sm leading-6 text-gray-600">Write the name of the dish</p>
                   </div>
@@ -37,13 +38,13 @@
                 <div class="col-span-full">
                   <label for="slug" class="block text-sm font-medium leading-6 text-gray-900">Slug</label>
                   <div class="mt-2">
-                    <input value="{{ old('slug', $product->slug) }}" id="slug" name="slug" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <input value="{{ old('slug', $products->slug) }}" id="slug" name="slug" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                   </div>
 
                 <div class="col-span-full">
                     <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
                     <div class="mt-2">
-                      <input value="{{ old('description', $product->description) }}" id="description" name="description" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                      <input value="{{ old('description', $products->description) }}" id="description" name="description" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                     <p class="mt-3 text-sm leading-6 text-gray-600">Short description about the dish</p>
                   </div>
@@ -51,7 +52,7 @@
                   <div class="col-span-full">
                     <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Price</label>
                     <div class="mt-2">
-                      <input value="{{ old('price', $product->price) }}" id="price" name="price" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                      <input value="{{ old('price', $products->price) }}" id="price" name="price" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
 
                   </div>

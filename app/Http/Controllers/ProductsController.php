@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\product;
 use App\Http\Requests\StoreproductsRequest;
 use App\Http\Requests\UpdateproductsRequest;
 use App\Models\spatie;
 use Illuminate\Http\Request;
 use function Laravel\Prompts\select;
+use App\Models\meal_kit;
 
 class ProductsController extends Controller
 {
@@ -39,7 +41,7 @@ class ProductsController extends Controller
      */
     public function store(StoreproductsRequest $request)
     {
-                 $save = new product();
+            $save = new product();
             $save->name = request('name');
             $save->price = request('price');
             $save->slug = request('name');
@@ -69,7 +71,7 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(products $products)
+    public function show(product $products)
     {
         //
     }
@@ -77,36 +79,33 @@ class ProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(products $products)
+    public function edit(product $product)
     {
-        // return view('admin.products.form',[
-        //     'products' => $products,
-        // ]);
-
+         return view('admin.products.form',[
+             'products' => $product,
+         ]);
 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateproductsRequest $request, products $products)
+    public function update(UpdateproductsRequest $request, product $product)
     {
-        $validated = $request->validated([
-            'name' => 'required',
-            'price' => 'required',
-            'description' => 'required',
+        $validated = $request->validated();
 
-        ]);
+        $product->update($validated);
 
-        $products->update($validated);
+        return redirect()->route('products.index
+        ')->with('success', 'Product successfully updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(products $products)
+    public function destroy(product $product)
     {
-        $products->delete();
+        $product->delete();
         return redirect()->route('products.index')->with('success', 'Product successfully deleted!');
     }
 
@@ -124,6 +123,7 @@ class ProductsController extends Controller
         }
         else{
             $cart[$id] = [
+                "id" => $product->id,
                 "product_name" => $product->name,
                 "image" => $product->imageget(),
                 "price"=> $product->price,
@@ -148,7 +148,8 @@ public function show_dish($preference){
         $Mealcart = session()->get('Mealcart', []);
 
          $Mealcart[$id] = [
-                "quantity"=> 1
+                "quantity"=> 1,
+                "id" => $product->id,
             ];
 
         session()->put('Mealcart', $Mealcart);
@@ -158,8 +159,42 @@ public function show_dish($preference){
 
     public function order_complete(){
 
-        session()->forget('cart');
-        return view('pages.order-complete');
+
+        if(session('paymenttype') == 'Subscription'){
+            $productIds = session()->get('Mealcart');
+            $meal_kit = new meal_kit();
+            $meal_kit->subscription_id = session('id');
+            $meal_kit->save();
+
+
+            foreach ($productIds as  $item) {
+                $productId = $item['id'];
+                $quantity = $item['quantity'];
+                $meal_kit->products()->attach($productId, ['quantity' => $quantity]);
+
+            }
+
+            session()->forget('Mealcart');
+        }
+        else {
+            $products = session()->get('cart');
+            $orderid = session('order_id');
+            $save = Order::find($orderid);
+            $save->payment_status = '1';
+            $save->save();
+
+            foreach ($products as  $item) {
+                $productId = $item['id'];
+                $quantity = $item['quantity'];
+                $save->products()->attach($productId, ['quantity' => $quantity]);
+
+            }
+
+
+
+            session()->forget('cart');
+            return view('pages.order-complete');
+        }
     }
 
 
