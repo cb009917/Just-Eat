@@ -164,7 +164,7 @@ Route::get('/checkout', [\App\Http\Controllers\Stripecontroller::class, "checkou
 Route::post('order_checkout', [\App\Http\Controllers\OrderController::class, "create_order"])->name('create_order');
 Route::get('Dashboard/orders', [\App\Http\Controllers\OrderController::class, "all_orders"])->name('all_orders');
 Route::get('Dashboard/user/orders', [\App\Http\Controllers\OrderController::class, "user_orders"])->name('user_orders');
-Route::get('Dashboard/user/subscription', [\App\Http\Controllers\OrderController::class, "user_subscription"])->name('user_orders');
+Route::get('Dashboard/user/subscription', [\App\Http\Controllers\OrderController::class, "user_subscription"])->name('user_subscription');
 
 
 

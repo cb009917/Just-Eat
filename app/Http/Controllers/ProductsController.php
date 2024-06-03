@@ -8,6 +8,7 @@ use App\Http\Requests\StoreproductsRequest;
 use App\Http\Requests\UpdateproductsRequest;
 use App\Models\spatie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use function Laravel\Prompts\select;
 use App\Models\meal_kit;
 
@@ -18,6 +19,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
+
           return view('admin.products.index',[
              'products' => product::paginate(5),
 
@@ -29,10 +31,8 @@ class ProductsController extends Controller
      */
     public function create(Request $request)
     {
-
-
         return view('admin.products.form',[
-            'product' => (new product()),
+            'products' => (new product()),
         ]);
     }
 
@@ -46,7 +46,7 @@ class ProductsController extends Controller
             $save->price = request('price');
             $save->slug = request('name');
             $save->description = request('description');
-            $save->category_id = request('category');
+            $save->category = request('category');
 
 
 //        if(!empty($request->file('image_file'))) {
@@ -57,13 +57,12 @@ class ProductsController extends Controller
 //            $save->image_file = $filename;
 //        }
 
-        $spatie = product::find(1);;
-        $spatie
-            ->addMedia($request->file('image_file'))
-            ->toMediaCollection();
-            $save->save();
+        if ($request->hasFile('image_file')) {
+            $save->addMediaFromRequest('image_file')->toMediaCollection('images');
+        }
 
 
+$save->save();
 
         return redirect()->route('products.index')->with('success', 'Product successfully created!');
     }
@@ -92,12 +91,21 @@ class ProductsController extends Controller
      */
     public function update(UpdateproductsRequest $request, product $product)
     {
+
+        logger($request->all()); // Log the request data
+
         $validated = $request->validated();
+
+        logger($validated); // Log the validated data
 
         $product->update($validated);
 
-        return redirect()->route('products.index
-        ')->with('success', 'Product successfully updated!');
+        if ($request->hasFile('image_file')) {
+            $product->clearMediaCollection('images');
+            $product->addMediaFromRequest('image_file')->toMediaCollection('images');
+        }
+
+        return redirect()->route('products.index')->with('success', 'Product successfully updated!');
     }
 
     /**
@@ -110,8 +118,13 @@ class ProductsController extends Controller
     }
 
     public function show_product(){
-        $data['products'] = product::get();
-        return view('pages.menu', $data);
+        $products = Product::all();
+        foreach ($products as $product) {
+            Log::info('Product Image URL: ' . $product->getFirstMediaUrl('images'));
+        }
+        return view('pages.menu', [
+            'products' => $products,
+        ]);
     }
 
     public function addtocart($id){
