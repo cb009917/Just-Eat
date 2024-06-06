@@ -103,7 +103,7 @@
 
                     <hr>
                     <label>Box Price</label>
-                    <span id="Box-price">{{$selectedPreference}}</span>
+                    <span id="Box-price">{{$box_price}}</span>
                     <br>
                     <label >service charge</label>
                     <span id="service-charge">{{$service_charge}}</span>
@@ -148,6 +148,7 @@
 </script>
 
 <?php
+session(['box_price' => $box_price]);
 session(['totalprice' => $TotalPrice]);
 session(['number_of_meals' => $number_of_meals]);
 session(['number_of_serving' => $serving]);

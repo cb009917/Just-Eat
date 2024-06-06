@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->boolean('status')->default(0);
             $table->string('delivery_time');
             $table->integer('subscription_period');

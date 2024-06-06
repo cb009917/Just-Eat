@@ -25,12 +25,14 @@ class subscriptionController extends Controller
         $mealplan->Number_of_meals = session('number_of_meals');
         $mealplan->Number_of_servings = session('number_of_serving');
         $mealplan->preference = session('preference');
-        $mealplan->user_id   = Auth()->user()->id;
+        $mealplan->user_id = auth()->user()->id;
         $mealplan->save();
 
 
         session(['period' => request('delivery-method')]);
         session(['id' => $mealplan->id]);
+        session(['address' => request('address')]);
+        session(['phone' => request('phone')]);
 
 
 
@@ -59,7 +61,7 @@ class subscriptionController extends Controller
     }
 
     public function All_subscriptions(){
-        $data['subscriptions'] = Subscription::paginate(10);
+        $data['subscriptions'] = Subscription::paginate(5);
         return view('admin.subscription.index', $data);
     }
 

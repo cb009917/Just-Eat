@@ -180,18 +180,33 @@ class ProductsSeeder extends Seeder
 
 
 foreach ($dishes as $dish) {
-  \App\Models\product::create([
+  $products =\App\Models\product::create([
       'name' => $dish['name'],
       'slug' => \Illuminate\Support\Str::slug($dish['name']),
       'description' => $dish['description'],
-        'status' => $dish['status'],
-        'meta_title' => $dish['meta_title'],
-        'meta_description' => $dish['meta_description'],
-        'meta_keywords' => $dish['meta_keywords'],
-        'category' => $dish['category'],
-
+      'status' => $dish['status'],
+      'meta_title' => $dish['meta_title'],
+      'meta_description' => $dish['meta_description'],
+      'meta_keywords' => $dish['meta_keywords'],
+      'category' => $dish['category'],
       'price' => $dish['price'],
   ]);
+    $extensions = ['jpg', 'jpeg', 'png'];
+    $imagePath = null;
+
+    // Iterate over the extensions and check if the file exists
+    foreach ($extensions as $extension) {
+        $path = public_path('img/products/' . $dish['slug'] . '.' . $extension);
+        if (file_exists($path)) {
+            $imagePath = $path;
+            break;
+        }
+    }
+
+    // If an image file is found, add it to the media collection
+    if ($imagePath) {
+        $products->addMedia($imagePath)->toMediaCollection('images');
+    }
 }
 
     }

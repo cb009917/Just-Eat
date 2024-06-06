@@ -405,21 +405,27 @@
 
                     <!-- Existing Chart -->
                     <div class="container mx-auto my-8">
-                        <canvas id="timeSlotChart" class="mx-auto" width="400" height="200"></canvas>
+                        <div class="bg-white shadow-lg rounded-lg p-4">
+                            <h2 class="text-xl font-bold mb-4">Time Slot Chart</h2>
+                            <canvas id="timeSlotChart" class="mx-auto" width="400" height="200"></canvas>
+                        </div>
                     </div>
 
-                    <!-- New Charts Container -->
                     <div class="container mx-auto my-8 grid grid-cols-2 gap-4">
-                        <div>
+                        <div class="bg-white shadow-lg rounded-lg p-4">
+                            <h2 class="text-xl font-bold mb-4">Subscription Period Chart</h2>
                             <canvas id="subscriptionPeriodChart" class="w-full"></canvas>
                         </div>
-                        <div>
+                        <div class="bg-white shadow-lg rounded-lg p-4">
+                            <h2 class="text-xl font-bold mb-4">Meal Preference Chart</h2>
                             <canvas id="mealPreferenceChart" class="w-full"></canvas>
                         </div>
-                        <div>
+                        <div class="bg-white shadow-lg rounded-lg p-4">
+                            <h2 class="text-xl font-bold mb-4">Number of Meals Chart</h2>
                             <canvas id="mealNumberChart" class="w-full"></canvas>
                         </div>
-                        <div>
+                        <div class="bg-white shadow-lg rounded-lg p-4">
+                            <h2 class="text-xl font-bold mb-4">Number of Servings Chart</h2>
                             <canvas id="servingNumberChart" class="w-full"></canvas>
                         </div>
                     </div>
@@ -450,14 +456,22 @@
                             });
 
                             // Subscription Period Chart
+                            var periodLabels = @json($periodLabels);
+                            var periodData = @json($periodData);
+
+                            // Add "Months" to each label
+                            var updatedPeriodLabels = periodLabels.map(function(label) {
+                                return label + ' Months';
+                            });
+
                             var ctx2 = document.getElementById('subscriptionPeriodChart').getContext('2d');
                             var subscriptionPeriodChart = new Chart(ctx2, {
                                 type: 'pie',
                                 data: {
-                                    labels: @json($periodLabels),
+                                    labels: updatedPeriodLabels,
                                     datasets: [{
                                         label: 'Number of Users',
-                                        data: @json($periodData),
+                                        data: periodData,
                                         backgroundColor: [
                                             'rgba(255, 99, 132, 0.2)',
                                             'rgba(54, 162, 235, 0.2)',
@@ -565,5 +579,6 @@
                             });
                         });
                     </script>
+
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @endsection

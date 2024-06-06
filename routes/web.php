@@ -141,12 +141,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::post("subscription/summery",function(){
         return view('pages.summery');
     });
-
-
     Route::get("subscription/select-menu/{preference}",[\App\Http\Controllers\ProductsController::class, "show_dish"]);
-
-
-
     Route::get("subscription/order-complete",[\App\Http\Controllers\ProductsController::class,'order_complete'])->name('/order_complete');;
 
 

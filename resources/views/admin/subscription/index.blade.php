@@ -60,7 +60,7 @@
                                 <span
                                     class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100"
                                 >
-                                  Diactive
+                                  Deactivate
                                 </span>
                             @else
                                 <span
@@ -125,6 +125,6 @@
             <span class="col-span-2"></span>
 
         </div>
-
+        {{ $subscriptions->links() }}
     </div>
 @endsection

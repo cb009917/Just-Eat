@@ -13,7 +13,7 @@ class PriceCalculator extends Component
         public $number_of_meals = 2;
         public $TotalPrice;
 
-        public $service_charge = 500;
+        public $service_charge = 1500;
 
         public $box_price;
 
@@ -49,12 +49,12 @@ class PriceCalculator extends Component
         public function calculate()
         {
             if ($this->serving == 4){
-                $box_price = ($this->number_of_meals * 1000) * 2;
+                $this->box_price = ($this->number_of_meals * 1000) * 2;
             }
             else{
-                $box_price = $this->number_of_meals * 1000;
+                $this->box_price = $this->number_of_meals * 1000;
             }
-            $this->TotalPrice = $box_price + $this->service_charge;
+            $this->TotalPrice = $this->box_price + $this->service_charge;
         }
     public function up(){
             $this->servings = 4;

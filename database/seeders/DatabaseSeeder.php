@@ -21,9 +21,6 @@ class DatabaseSeeder extends Seeder
             'role' => 1,
         ]);
 
-        $this -> call([
-            RecipeSeeder::class,
-        ]);
 
         $this -> call([
             MealPlanSeeder::class,

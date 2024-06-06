@@ -1,54 +1,7 @@
 <x-app-layout>
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h5 class="section-title ff-secondary text-center text-primary fw-normal">Food Menu</h5>
-                <h1 class="mb-5">Most Popular Items</h1>
-            </div>
-            <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
-                <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
-                    <li class="nav-item">
-                        <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
-                            <i class="fa fa-coffee fa-2x text-primary"></i>
-                            <div class="ps-3">
-
-                                <h6 class="mt-n1 mb-0">Breakfast</h6>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
-                            <i class="fa fa-hamburger fa-2x text-primary"></i>
-                            <div class="ps-3">
-
-                                <h6 class="mt-n1 mb-0">Launch</h6>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
-                            <i class="fa fa-utensils fa-2x text-primary"></i>
-                            <div class="ps-3">
-
-                                <h6 class="mt-n1 mb-0">Dinner</h6>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div id="tab-1" class="tab-pane fade show p-0 active">
-
-                        <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-
-                            <div class="border-b mb-5 flex justify-between text-sm">
-                                <div class="text-indigo-600 flex items-center pb-2 pr-2 border-b-2 border-indigo-600 uppercase">
-                                    <svg class="h-6 mr-3" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 455.005 455.005"
-                                         style="enable-background:new 0 0 455.005 455.005;" xml:space="preserve">
-
-
-                                </div>
-
+           
 
                                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20">
 

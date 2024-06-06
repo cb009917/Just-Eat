@@ -9,8 +9,8 @@ return new class extends Migration {
     {
         Schema::create('order_product', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id');
-            $table->foreignId('order_id');
+            $table->foreignId('product_id')->constrained();
+            $table->foreignId('order_id')->constrained();
             $table->integer('quantity');
             $table->softDeletes();
             $table->timestamps();

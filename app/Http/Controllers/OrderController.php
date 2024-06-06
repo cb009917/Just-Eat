@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\order_product;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 class OrderController extends Controller
 {
@@ -10,6 +11,7 @@ class OrderController extends Controller
     public function create_order(Request $request){
         $save = new Order();
         $save->user_id = auth()->id();
+
         $save->billing_first_name = request('fname');
         $save->billing_last_name = request('lname');
         $save->billing_post_code = request('zip');
@@ -40,7 +42,7 @@ class OrderController extends Controller
     }
 
     public function user_subscription(){
-        $subs['subscriptions'] = Order::where('user_id',auth()->id())->get();
+        $subs['subscriptions'] = Subscription::where('user_id',auth()->id())->get();
         return view('user.subscription.subscription',$subs);
     }
 

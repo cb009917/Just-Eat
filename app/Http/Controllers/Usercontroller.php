@@ -87,7 +87,11 @@ class Usercontroller extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
+
+        $user->orders()->forceDelete();
+        $user->subscriptions()->forceDelete();
+        $user->forceDelete();
+
         return redirect()->route('user.index')->with('success', 'User successfully deleted!');
     }
 

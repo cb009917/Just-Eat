@@ -27,11 +27,11 @@
             <div class="w-full lg:w-2/3">
                 @foreach($order->products as $value)
                 <div class="flex items-center mb-4">
-                    <img src="https://via.placeholder.com/60" alt="Product Image" class="w-16 h-16 rounded mr-4">
+                    <img src="{{ $value->getFirstMediaUrl('images')}}" alt="Product Image" class="w-16 h-16 rounded mr-4">
                     <div>
                         <h4 class="font-semibold">{{$value->name}}</h4>
                         <p>Quantity {{$value->pivot->quantity}}</p>
-                        <p>$230</p>
+                        <p>{{$value->price}}</p>
                     </div>
                 </div>
                 @endforeach
@@ -52,7 +52,7 @@
                 </div>
                 <div class="flex justify-between font-bold">
                     <span>Order Total</span>
-                    <span>$360</span>
+                    <span>{{$order->total}}</span>
                 </div>
             </div>
         </div>

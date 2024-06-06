@@ -20,11 +20,11 @@
 <h4
     class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
 >
-    Table with actions
+    Products table
 </h4>
 
 <a href="{{ route('products.create') }}"
-   style="display: block; max-width: 150px; width: 100%; margin: 0 auto; border-radius: 0.375rem; background-color: #4f46e5; padding: 0.5rem 0.75rem; text-align: center; font-size: 0.875rem; font-weight: 600; color: #ffffff; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); text-decoration: none; float: right;"
+   style="display: block; max-width: 150px; width: 100%; margin: 20px auto; border-radius: 0.375rem; background-color: #4f46e5; padding: 0.5rem 0.75rem; text-align: center; font-size: 0.875rem; font-weight: 600; color: #ffffff; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); text-decoration: none; float: right;"
    onmouseover="this.style.backgroundColor='#4338ca'"
    onfocus="this.style.outline='2px solid #4f46e5'; this.style.outlineOffset='2px'"
    onblur="this.style.outline='none'">
@@ -58,13 +58,13 @@
                     {{$recipe->id}}
                 </td>
                 <td class="px-4 py-3 text-sm">
-                    {{$recipe->name}}
+                    {!! strip_tags(Str::substr($recipe->name,0,20)) !!} ...
                 </td>
                 <td class="px-4 py-3 text-sm">
-                    {{$recipe->slug}}
+                    {!! strip_tags(Str::substr($recipe->slug,0,20)) !!} ...
                 </td>
                 <td class="px-4 py-3 text-sm">
-                    {{$recipe->description}}
+                    {!! strip_tags(Str::substr($recipe->description,0,20)) !!} ...
                 </td>
                 <td class="px-4 py-3 text-sm">
                     {{$recipe->price}}
@@ -127,9 +127,7 @@
     <div
         class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
     >
-                <span class="flex items-center col-span-3">
-                  Showing 21-30 of 100
-                </span>
+
         <span class="col-span-2"></span>
 
     </div>

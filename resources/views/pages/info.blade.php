@@ -37,7 +37,7 @@
             <form action="{{route('subscriptions.create')}}">
                 @csrf
 
-                <div class="flex flex-wrap -mx-3 mb-6 mt-4">
+                <div class="flex flex-wrap -mx-3 mb-6 mt-5">
                     <div class="w-full px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                             Delivery Address
@@ -54,7 +54,7 @@
                         </label>
                         <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" name="city">
                     </div>
-                    <div class="w-full md:w-1/2 px-3">
+                    <div class="w-full md:w-1/3 px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                             Zip code
                         </label>
@@ -62,20 +62,19 @@
                     </div>
                 </div>
 
-                <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <div class="w-full md:w-1/3 px-3 mb-6">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
                         Contact
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" >
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" name="phone">
                 </div>
-
 
 
 
 
         </div>
 
-        <div class="subscription-container">
+        <div class="subscription-container mt-5">
             <h2 class="text-xl font-semibold text-gray-900 dark:text-black">Delivery Time</h2>
             <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" name="time">
                 <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
@@ -84,7 +83,7 @@
             </select>
 
             <h2 class="text-xl font-semibold text-gray-900 dark:text-black mt-4">Subscription period</h2>
-
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="subscription-item">
                     <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800">
                         <div class="flex items-start">
@@ -140,8 +139,9 @@
                         </div>
                     </div>
                 </div>
+        </div>
 
-        <button class="green-button" type="submit">Next</button>
+        <button class="green-button mb-5 w-50" type="submit">Next</button>
     </div>
         </div>
 

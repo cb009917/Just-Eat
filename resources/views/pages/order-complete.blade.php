@@ -51,7 +51,7 @@
 
     <div class="container1">
         <div class="header">
-            <div class="h1">HubSpot</div>
+            <div class="h1">Order Confirmed </div>
             <div class="text-sm">Order ID: 1234567</div>
         </div>
         <div class="order-info">
@@ -77,7 +77,7 @@
                 Visit your account & billing page to manage your invoices, products, and services.
             </div>
             <div class="text-sm text-center pt-4">
-                If you have any questions, please contact us at billing@hubspot.com
+                If you have any questions, please contact us at JustEat.help@gmail.com
             </div>
         </div>
     </div>
