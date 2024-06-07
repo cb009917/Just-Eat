@@ -34,10 +34,10 @@ class subscriptionController extends Controller
         session(['address' => request('address')]);
         session(['phone' => request('phone')]);
 
-
-
         return redirect()->route('/summery');
     }
+
+
 
     public function store(Request $request)
     {

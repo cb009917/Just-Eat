@@ -112,7 +112,7 @@
                         <label>Total price per week</label>
                         <span id="serving">{{ $TotalPrice }}</span>
                     </div>
-                    <a href="subscription/user-information">
+                    <a href="user-information">
                     <button type="submit" class="btn btn-primary">Continue</button>
                     </a>
 

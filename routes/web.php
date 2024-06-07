@@ -22,18 +22,10 @@ use App\Livewire\PriceCalculator;
 
 
 
-// Route::post('/post-test', function (Request $request) {
-//     dd(request());
-// });
 
 Route::get('price-calculator',priceCalculator::class);
 Route::get('Dashboard',[\App\Http\Controllers\analyticController::class,"analytics"])->name('Dashboard');
-
 Route::post('/store-preference', [\App\Http\Controllers\subscriptionController::class, 'storePreference'])->name('store.preference');
-
-
-
-
 Route::get("/",[homecontroller::class,"index"]);
 
     /**
@@ -91,18 +83,12 @@ Route::group(['prefix' => 'admin'], function () {
      */
     Route::group(['prefix' => 'order'], function () {
 
-        // order resource route
-        Route::resource('orders', BaseController::class);
-
-        // delivery and customer resource route
-        Route::resource('deliverys', BaseController::class);
+        Route::get("Dashboard/order/{id}", [\App\Http\Controllers\OrderController::class, 'order_details']);
     });
 
+    Route::get("Dashboard/subscription", [\App\Http\Controllers\subscriptionController::class, 'All_subscriptions']);
 
 
-    Route::get("/",function(Request $request){
-        return "yo admin";
-    });
 });
 
 
@@ -111,45 +97,37 @@ Route::group(['prefix' => 'admin'], function () {
  */
 Route::group(['prefix' => 'user'], function () {
 
-
+    Route::get("menu",[\App\Http\Controllers\ProductsController::class,"show_product"]);
     //subscription route
-    Route::resource('subscriptions', \App\Http\Controllers\subscriptionController::class);
 
-    //review route
-    Route::resource('reviews', BaseController::class);
+    /**
+     * Subscription routes
+     */
 
-    //Delivery tracking route
-    Route::resource('deliveries', BaseController::class);
+    Route::group(['prefix' => 'subscription'], function () {
 
-    //notification route
-    Route::resource('notifications', BaseController::class);
+        Route::resource('subscriptions', \App\Http\Controllers\subscriptionController::class);
+        Route::get("subscription", function () {return view('pages.subscription');})->name('/subscription');
+        Route::get("user-information", function () {return view('pages.info');});
+        Route::get("summery", function () {return view('pages.summery');})->name('/summery');
+        Route::post("summery", function () {return view('pages.summery');});
+        Route::get("select-menu/{preference}", [\App\Http\Controllers\ProductsController::class, "show_dish"]);
+        Route::get("order-complete", [\App\Http\Controllers\ProductsController::class, 'order_complete'])->name('/order_complete');;
 
-    Route::get("subscription",function(){
-        return view('pages.subscription');
-    })->name('/subscription');
-
-    Route::get("subscription/user-information",function(){
-        return view('pages.info');
     });
 
-    Route::get("subscription/summery",function(){
-        return view('pages.summery');
-    })->name('/summery');
+    /**
+     * User Dashboard routes
+     */
 
-
-
-    Route::post("subscription/summery",function(){
-        return view('pages.summery');
-    });
-    Route::get("subscription/select-menu/{preference}",[\App\Http\Controllers\ProductsController::class, "show_dish"]);
-    Route::get("subscription/order-complete",[\App\Http\Controllers\ProductsController::class,'order_complete'])->name('/order_complete');;
-
-
+    Route::get('Dashboard/orders', [\App\Http\Controllers\OrderController::class, "all_orders"])->name('all_orders');
+    Route::get('Dashboard/user/orders', [\App\Http\Controllers\OrderController::class, "user_orders"])->name('user_orders');
+    Route::get('Dashboard/user/subscription', [\App\Http\Controllers\OrderController::class, "user_subscription"])->name('user_subscription');
 
 });
-Route::get("menu",[\App\Http\Controllers\ProductsController::class,"show_product"]);
-Route::get("Dashboard/subscription", [\App\Http\Controllers\subscriptionController::class, 'All_subscriptions']);
-Route::get("Dashboard/order/{id}", [\App\Http\Controllers\OrderController::class, 'order_details']);
+
+
+
 
 Route::get('add_to_cart/{id}',[\App\Http\Controllers\ProductsController::class,"addtocart"])->name('add_to_cart');
 Route::post('add/{id}',[\App\Http\Controllers\ProductsController::class,"add"])->name('add');
@@ -157,23 +135,6 @@ Route::get('cart',[\App\Http\Controllers\ProductsController::class,"cart"])->nam
 Route::get('order_checkout',[\App\Http\Controllers\OrderController::class,"order_checkout"])->name('order_checkout');
 Route::get('/checkout', [\App\Http\Controllers\Stripecontroller::class, "checkout"])->name('checkout');
 Route::post('order_checkout', [\App\Http\Controllers\OrderController::class, "create_order"])->name('create_order');
-Route::get('Dashboard/orders', [\App\Http\Controllers\OrderController::class, "all_orders"])->name('all_orders');
-Route::get('Dashboard/user/orders', [\App\Http\Controllers\OrderController::class, "user_orders"])->name('user_orders');
-Route::get('Dashboard/user/subscription', [\App\Http\Controllers\OrderController::class, "user_subscription"])->name('user_subscription');
-
-
-
-
-
-
-//Route::get("/smenu",function(){
-//    return view('pages.select-menu');
-//});
-
-
-
-
-
 
 
 
