@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "filament/filament": "^3.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/jetstream": "^4.1",
@@ -37,7 +38,6 @@
         }
     },
     "scripts": {
-
         "refresh": [
             "@php artisan db:wipe",
             "@php artisan migrate",
@@ -45,7 +45,8 @@
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -73,7 +74,4 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true
-
-
-
 }
